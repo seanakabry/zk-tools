@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>CreationDate</key>
+		<real>615345315.65715802</real>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>MacroActionType</key>
+						<string>Comment</string>
+						<key>StyledText</key>
+						<data>
+						cnRmZAAAAAADAAAAAgAAAAcAAABU
+						WFQucnRmAQAAAC67AQAAKwAAAAEA
+						AACzAQAAe1xydGYxXGFuc2lcYW5z
+						aWNwZzEyNTJcY29jb2FydGYyNTEz
+						Clxjb2NvYXRleHRzY2FsaW5nMFxj
+						b2NvYXBsYXRmb3JtMHtcZm9udHRi
+						bFxmMFxmc3dpc3NcZmNoYXJzZXQw
+						IEhlbHZldGljYTt9CntcY29sb3J0
+						Ymw7XHJlZDI1NVxncmVlbjI1NVxi
+						bHVlMjU1O1xyZWQwXGdyZWVuMFxi
+						bHVlMDt9CntcKlxleHBhbmRlZGNv
+						bG9ydGJsOztcY3NzcmdiXGMwXGMw
+						XGMwXGM4NDcwNlxjbmFtZSBjb250
+						cm9sVGV4dENvbG9yO30KXHBhcmRc
+						dHg1NjBcdHgxMTIwXHR4MTY4MFx0
+						eDIyNDBcdHgyODAwXHR4MzM2MFx0
+						eDM5MjBcdHg0NDgwXHR4NTA0MFx0
+						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
+						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
+						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
+						Y2YyIFZlcnNpb246IDEuMDBcClVS
+						STogaHR0cHM6Ly9naXRodWIuY29t
+						L3NlYW5ha2FicnkvemstdG9vbHN9
+						AQAAACMAAAABAAAABwAAAFRYVC5y
+						dGYQAAAA9XP9XrYBAAAAAAAAAAAA
+						AA==
+						</data>
+						<key>Title</key>
+						<string>Macro Metadata</string>
+					</dict>
+					<dict>
+						<key>ActionColor</key>
+						<string>Yellow</string>
+						<key>MacroActionType</key>
+						<string>SetVariableToText</string>
+						<key>Text</key>
+						<string>/Volumes/Notebooks/Private/Notes</string>
+						<key>Variable</key>
+						<string>Notes Directory</string>
+					</dict>
+					<dict>
+						<key>ActionColor</key>
+						<string>Yellow</string>
+						<key>MacroActionType</key>
+						<string>SetVariableToText</string>
+						<key>Text</key>
+						<string>/Volumes/Notebooks/Private/Backups</string>
+						<key>Variable</key>
+						<string>Backup Directory</string>
+					</dict>
+					<dict>
+						<key>DisplayKind</key>
+						<string>Variable</string>
+						<key>HonourFailureSettings</key>
+						<true/>
+						<key>IncludeStdErr</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>ExecuteShellScript</string>
+						<key>NotifyOnFailure</key>
+						<false/>
+						<key>Path</key>
+						<string></string>
+						<key>Source</key>
+						<string>Nothing</string>
+						<key>StopOnFailure</key>
+						<false/>
+						<key>Text</key>
+						<string>cd "$KMVAR_Notes_Directory"
+ls -t | sed -e 's/.[^.]*$//'</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>TrimResults</key>
+						<true/>
+						<key>TrimResultsNew</key>
+						<true/>
+						<key>UseText</key>
+						<true/>
+						<key>Variable</key>
+						<string>All Notes</string>
+					</dict>
+					<dict>
+						<key>Destination</key>
+						<string>Variable</string>
+						<key>DestinationVariable</key>
+						<string>Old Title</string>
+						<key>MacroActionType</key>
+						<string>PromptWithList</string>
+						<key>PromptUID</key>
+						<string>EC755C61-FAB2-4926-B374-B8D5CC006E9B</string>
+						<key>Source</key>
+						<string>Variable</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>Variable</key>
+						<string>All Notes</string>
+						<key>WindowTitle</key>
+						<string>Note to be renamed</string>
+					</dict>
+					<dict>
+						<key>Buttons</key>
+						<array>
+							<dict>
+								<key>Button</key>
+								<string>OK</string>
+							</dict>
+							<dict>
+								<key>Button</key>
+								<string>Cancel</string>
+								<key>Cancel</key>
+								<true/>
+							</dict>
+						</array>
+						<key>MacroActionType</key>
+						<string>PromptForUserInput</string>
+						<key>Prompt</key>
+						<string>[[Wikilinks]] to the renamed note will be updated.</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>Title</key>
+						<string>New Title</string>
+						<key>Variables</key>
+						<array>
+							<dict>
+								<key>Default</key>
+								<string>%Variable%Old Title%</string>
+								<key>Variable</key>
+								<string>New Title</string>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>DisplayKind</key>
+						<string>None</string>
+						<key>HonourFailureSettings</key>
+						<true/>
+						<key>IncludeStdErr</key>
+						<false/>
+						<key>MacroActionType</key>
+						<string>ExecuteShellScript</string>
+						<key>Path</key>
+						<string></string>
+						<key>Source</key>
+						<string>Nothing</string>
+						<key>Text</key>
+						<string>cd "$KMVAR_Notes_Directory"
+
+# Create a backup directory.
+backup_directory="$KMVAR_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Old_Title\" to \"$KMVAR_New_Title\""
+mkdir "$backup_directory"
+
+f=$(find . -name "$KMVAR_Old_Title.*")
+
+# Back up the note to be renamed.
+cp -p "$f" "$backup_directory/$f"
+
+mv "$f" "${f//$KMVAR_Old_Title/$KMVAR_New_Title}"
+
+# Identify notes containing wikilinks to the renamed note.
+grep -rl "[[$KMVAR_Old_Title]]" . | while read -r f ; do
+
+	# Back up the notes.
+	# Exclude the just-renamed note, which may include a wikilink to itself (such as in a YAML header).
+	f_basename=${f##*/}
+	f_basename=${f_basename%.*}
+	if [ "$f_basename" != "$KMVAR_New_Title" ]; then
+		cp -p "$f" "$backup_directory/$f"
+	fi
+
+	# Update the wikilinks.
+	# Save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
+	touch "$f.temp"
+	touch -r "$f" "$f.temp"
+	sed -i "" "s|\[\[$KMVAR_Old_Title\]\]|\[\[$KMVAR_New_Title\]\]|g" "$f"
+	touch -r "$f.temp" "$f"
+	rm "$f.temp"
+
+done</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>TrimResults</key>
+						<true/>
+						<key>TrimResultsNew</key>
+						<true/>
+						<key>UseText</key>
+						<true/>
+					</dict>
+				</array>
+				<key>CreationDate</key>
+				<real>615345287.26928699</real>
+				<key>IsActive</key>
+				<false/>
+				<key>ModificationDate</key>
+				<real>615368427.55246997</real>
+				<key>Name</key>
+				<string>Rename Note and Update [[Wikilinks]] to It, with Backups</string>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>FireType</key>
+						<string>Pressed</string>
+						<key>KeyCode</key>
+						<integer>15</integer>
+						<key>MacroTriggerType</key>
+						<string>HotKey</string>
+						<key>Modifiers</key>
+						<integer>4608</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>4863303F-7DCF-45ED-B7E9-C27F4EFC720C</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>Zettelkasten</string>
+		<key>ToggleMacroUID</key>
+		<string>37DE1665-EF46-47E5-98FB-DF73E0C6606B</string>
+		<key>UID</key>
+		<string>F2232967-28EF-4560-AED1-F3AFDD97123A</string>
+	</dict>
+</array>
+</plist>
