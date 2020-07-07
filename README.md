@@ -15,7 +15,9 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 
 | Macro | Function | v. | Updated |
 | :---- | -------- | :- | :------------ |
+| [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.00 | 2020-07-08 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
+| [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.00 | 2020-07-08 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.01 | 2020-07-07 |
 | [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.00 | 2020-07-07 |
 | [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.01 | 2020-07-07 |
@@ -71,6 +73,32 @@ If you are also new to shell scripting and want to modify the scripts above, the
 
 # Macros
 
+## Append UIDs to Filenames
+
+Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. The macro shares a global variable `Last UID` with [Insert UID](#insert-uid) so that UIDs assigned in rapid succession (that is, more than one in a given clock minute) don't overlap.
+
+### Links
+
+* [Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Append%20UIDs%20to%20Filenames.kmmacros) (right click and 'save link/target')
+
+### Invoked Shell Script
+
+```sh
+extension="${KMVAR_Instance_Files##*.}"
+basename="${KMVAR_Instance_Files%.*}"
+mv "$KMVAR_Instance_Files" "${basename} ($KMVAR_Instance_UID_to_Assign).${extension}"
+```
+
+### To Be Improved
+
+* The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
+
+### Changelog
+
+| Version | Date | Changes |
+| ------- | ---- | ------- |
+| 1.00 | 2020-07-08 | Initial commit |
+
 ## Back Up Notes
 
 Copies all notes to a timestamped backup directory.
@@ -91,6 +119,24 @@ cp -a "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(dat
 | ------- | ---- | ------- |
 | 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
 | 1.00 | 2020-07-02 | Initial commit |
+
+## Insert UID
+
+Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. The macro shares a global variable `Last UID` with [Append UIDs to Filenames](#append-uids-to-filenames) so that UIDs assigned in rapid succession (that is, more than one in a given clock minute) don't overlap.
+
+### Links
+
+* [Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Insert%20UID.kmmacros) (right click and 'save link/target')
+
+### To Be Improved
+
+* The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
+
+### Changelog
+
+| Version | Date | Changes |
+| ------- | ---- | ------- |
+| 1.00 | 2020-07-08 | Initial commit |
 
 ## Find and Replace
 
