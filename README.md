@@ -17,6 +17,7 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 | :---- | -------- | :- | :------------ |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-02 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.01 | 2020-07-02 |
+| [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.00 | 2020-07-07 |
 | [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.01 | 2020-07-02 |
 
 ## Assumptions
@@ -43,7 +44,7 @@ The tools assume:
 
 1.	Download and open the desired macro (`.kmmacros`).
 
-2.	Edit any variables which should be customised, in the "Set Variables" action(s) highlighted yellow:
+2.	Edit any variables which should be customised, in the "Set Variables" action(s) highlighted yellow, such as:
 
 	*	Notes Directory: The directory containing your plain text notes. A folder can be dragged into the action window from Finder.
 
@@ -137,6 +138,38 @@ done
 | ------- | ---- | ------- |
 | 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
 | 1.00 | 2020-07-02 | Initial commit |
+
+## Open File by UID
+
+Opens the file in a specified directory with a filename containing the currently selected text. The intended use case is a UID scheme for documents outside the Zettelkasten; as such, the macro expects that only one file will match the search string.
+
+As an example, a daily/diary note might contain a line like:
+
+```
+*	[[Project Name]]: The table of sources has grown too large and unwieldy for Markdown. Moved it into a spreadsheet (202007071949).
+```
+
+Double-clicking the spreadsheet's UID and triggering the macro will open the spreadsheet in the default application for its filetype.
+
+### Links
+
+* [Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Open%20File%20by%20UID.kmmacros) (right click and 'save link/target')
+
+### Invoked Shell Script
+
+```sh
+open "$(find "$KMVAR_Instance_Documents_Directory" -type f -name "*$KMVAR_Instance_Document_UID*" | head -n1)"
+```
+
+### To Be Improved
+
+* If no match is found, the macro should abort and inform the user.
+
+### Changelog
+
+| Version | Date | Changes |
+| ------- | ---- | ------- |
+| 1.00 | 2020-07-07 | Initial commit |
 
 ## Rename and Update Wikilinks
 
