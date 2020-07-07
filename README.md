@@ -145,9 +145,7 @@ Opens the file in a specified directory with a filename containing the currently
 
 As an example, a daily/diary note might contain a line like:
 
-```
-*	[[Project Name]]: The table of sources has grown too large and unwieldy for Markdown. Moved it into a spreadsheet (202007071949).
-```
+> *	[[Project Name]]: The table of sources has grown too large and unwieldy for Markdown. Moved it into a spreadsheet (202007071949).
 
 Double-clicking the spreadsheet's UID and triggering the macro will open the spreadsheet in the default application for its filetype.
 
