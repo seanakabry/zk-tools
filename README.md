@@ -15,9 +15,9 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 
 | Macro | Function | v. | Updated |
 | :---- | -------- | :- | :------------ |
-| [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.00 | 2020-07-02 |
-| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.00 | 2020-07-02 |
-| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.00 | 2020-07-02 |
+| [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-02 |
+| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.01 | 2020-07-02 |
+| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.01 | 2020-07-02 |
 
 ## Assumptions
 
@@ -81,13 +81,14 @@ Copies all notes to a timestamped backup directory.
 ### Invoked Shell Script
 
 ```sh
-cp -a "$KMVAR_Notes_Directory/" "$KMVAR_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Manual Backup/"
+cp -a "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Manual Backup/"
 ```
 
 ### Changelog
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
 | 1.00 | 2020-07-02 | Initial commit |
 
 ## Find and Replace
@@ -103,14 +104,14 @@ Performs a find and replace operation on the content but not the titles of all n
 ### Invoked Shell Script
 
 ```sh
-cd "$KMVAR_Notes_Directory"
+cd "$KMVAR_Instance_Notes_Directory"
 
 # Create a backup directory.
-backup_directory="$KMVAR_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Replace \"$KMVAR_Find\" with \"$KMVAR_Replace\""
+backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Replace \"$KMVAR_Instance_Find\" with \"$KMVAR_Instance_Replace\""
 mkdir "$backup_directory"
 
 # Identify notes containing the string to be replaced.
-grep -rl "$KMVAR_Find" . | while read -r f ; do
+grep -rl "$KMVAR_Instance_Find" . | while read -r f ; do
 
 	# Back up the notes.
 	cp -p "$f" "$backup_directory/$f"
@@ -119,7 +120,7 @@ grep -rl "$KMVAR_Find" . | while read -r f ; do
 	# Save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
 	touch "$f.temp"
 	touch -r "$f" "$f.temp"
-	sed -i "" "s|$KMVAR_Find|$KMVAR_Replace|g" "$f"
+	sed -i "" "s|$KMVAR_Instance_Find|$KMVAR_Instance_Replace|g" "$f"
 	touch -r "$f.temp" "$f"
 	rm "$f.temp"
 
@@ -134,6 +135,7 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
 | 1.00 | 2020-07-02 | Initial commit |
 
 ## Rename and Update Wikilinks
@@ -172,34 +174,34 @@ If you use UID-only wikilinks, do not use this macro. A principal benefit of a U
 Compile a list of all notes:
 
 ```sh
-cd "$KMVAR_Notes_Directory"
+cd "$KMVAR_Instance_Notes_Directory"
 ls -t | sed -e 's/.[^.]*$//'
 ```
 
 Rename the note and update `[[wikilinks]]` to it, taking backups:
 
 ```sh
-cd "$KMVAR_Notes_Directory"
+cd "$KMVAR_Instance_Notes_Directory"
 
 # Create a backup directory.
-backup_subdirectory="$KMVAR_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Old_Title\" to \"$KMVAR_New_Title\""
+backup_subdirectory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
 mkdir "$backup_subdirectory"
 
-f=$(find . -name "$KMVAR_Old_Title.*")
+f=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
 # Back up the note to be renamed.
 cp -p "$f" "$backup_subdirectory/$f"
 
-mv "$f" "${f//$KMVAR_Old_Title/$KMVAR_New_Title}"
+mv "$f" "${f//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
 
 # Identify notes containing wikilinks to the renamed note.
-grep -rl "[[$KMVAR_Old_Title]]" . | while read -r f ; do
+grep -rl "[[$KMVAR_Instance_Old_Title]]" . | while read -r f ; do
 
 	# Back up the notes.
 	# Exclude the just-renamed note, which may include a wikilink to itself (such as in a YAML header).
 	f_basename=${f##*/}
 	f_basename=${f_basename%.*}
-	if [ "$f_basename" != "$KMVAR_New_Title" ]; then
+	if [ "$f_basename" != "$KMVAR_Instance_New_Title" ]; then
 		cp -p "$f" "$backup_subdirectory/$f"
 	fi
 
@@ -207,7 +209,7 @@ grep -rl "[[$KMVAR_Old_Title]]" . | while read -r f ; do
 	# Save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
 	touch "$f.temp"
 	touch -r "$f" "$f.temp"
-	sed -i "" "s|\[\[$KMVAR_Old_Title\]\]|\[\[$KMVAR_New_Title\]\]|g" "$f"
+	sed -i "" "s|\[\[$KMVAR_Instance_Old_Title\]\]|\[\[$KMVAR_Instance_New_Title\]\]|g" "$f"
 	touch -r "$f.temp" "$f"
 	rm "$f.temp"
 
@@ -218,4 +220,5 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
 | 1.00 | 2020-07-02 | Initial commit |

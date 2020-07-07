@@ -18,8 +18,8 @@
 						<key>StyledText</key>
 						<data>
 						cnRmZAAAAAADAAAAAgAAAAcAAABU
-						WFQucnRmAQAAAC67AQAAKwAAAAEA
-						AACzAQAAe1xydGYxXGFuc2lcYW5z
+						WFQucnRmAQAAAC61AQAAKwAAAAEA
+						AACtAQAAe1xydGYxXGFuc2lcYW5z
 						aWNwZzEyNTJcY29jb2FydGYyNTEz
 						Clxjb2NvYXRleHRzY2FsaW5nMFxj
 						b2NvYXBsYXRmb3JtMHtcZm9udHRi
@@ -37,12 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb246IDEuMDBcClVS
-						STogaHR0cHM6Ly9naXRodWIuY29t
-						L3NlYW5ha2FicnkvemstdG9vbHN9
-						AQAAACMAAAABAAAABwAAAFRYVC5y
-						dGYQAAAA9XP9XrYBAAAAAAAAAAAA
-						AA==
+						Y2YyIFZlcnNpb24gMS4wMVwKaHR0
+						cHM6Ly9naXRodWIuY29tL3NlYW5h
+						a2FicnkvemstdG9vbHN9AQAAACMA
+						AAABAAAABwAAAFRYVC5ydGYQAAAA
+						wzQEX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -55,7 +54,7 @@
 						<key>Text</key>
 						<string>/Volumes/Notebooks/Private/Notes</string>
 						<key>Variable</key>
-						<string>Notes Directory</string>
+						<string>Instance Notes Directory</string>
 					</dict>
 					<dict>
 						<key>ActionColor</key>
@@ -65,7 +64,7 @@
 						<key>Text</key>
 						<string>/Volumes/Notebooks/Private/Backups</string>
 						<key>Variable</key>
-						<string>Backup Directory</string>
+						<string>Instance Backup Directory</string>
 					</dict>
 					<dict>
 						<key>DisplayKind</key>
@@ -85,7 +84,7 @@
 						<key>StopOnFailure</key>
 						<false/>
 						<key>Text</key>
-						<string>cd "$KMVAR_Notes_Directory"
+						<string>cd "$KMVAR_Instance_Notes_Directory"
 ls -t | sed -e 's/.[^.]*$//'</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
@@ -96,13 +95,13 @@ ls -t | sed -e 's/.[^.]*$//'</string>
 						<key>UseText</key>
 						<true/>
 						<key>Variable</key>
-						<string>All Notes</string>
+						<string>Instance All Notes</string>
 					</dict>
 					<dict>
 						<key>Destination</key>
 						<string>Variable</string>
 						<key>DestinationVariable</key>
-						<string>Old Title</string>
+						<string>Instance Old Title</string>
 						<key>MacroActionType</key>
 						<string>PromptWithList</string>
 						<key>PromptUID</key>
@@ -112,7 +111,7 @@ ls -t | sed -e 's/.[^.]*$//'</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 						<key>Variable</key>
-						<string>All Notes</string>
+						<string>Instance All Notes</string>
 						<key>WindowTitle</key>
 						<string>Note to be renamed</string>
 					</dict>
@@ -142,9 +141,9 @@ ls -t | sed -e 's/.[^.]*$//'</string>
 						<array>
 							<dict>
 								<key>Default</key>
-								<string>%Variable%Old Title%</string>
+								<string>%Variable%Instance Old Title%</string>
 								<key>Variable</key>
-								<string>New Title</string>
+								<string>Instance New Title</string>
 							</dict>
 						</array>
 					</dict>
@@ -162,27 +161,27 @@ ls -t | sed -e 's/.[^.]*$//'</string>
 						<key>Source</key>
 						<string>Nothing</string>
 						<key>Text</key>
-						<string>cd "$KMVAR_Notes_Directory"
+						<string>cd "$KMVAR_Instance_Notes_Directory"
 
 # Create a backup directory.
-backup_directory="$KMVAR_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Old_Title\" to \"$KMVAR_New_Title\""
+backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
 mkdir "$backup_directory"
 
-f=$(find . -name "$KMVAR_Old_Title.*")
+f=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
 # Back up the note to be renamed.
 cp -p "$f" "$backup_directory/$f"
 
-mv "$f" "${f//$KMVAR_Old_Title/$KMVAR_New_Title}"
+mv "$f" "${f//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
 
 # Identify notes containing wikilinks to the renamed note.
-grep -rl "[[$KMVAR_Old_Title]]" . | while read -r f ; do
+grep -rl "[[$KMVAR_Instance_Old_Title]]" . | while read -r f ; do
 
 	# Back up the notes.
 	# Exclude the just-renamed note, which may include a wikilink to itself (such as in a YAML header).
 	f_basename=${f##*/}
 	f_basename=${f_basename%.*}
-	if [ "$f_basename" != "$KMVAR_New_Title" ]; then
+	if [ "$f_basename" != "$KMVAR_Instance_New_Title" ]; then
 		cp -p "$f" "$backup_directory/$f"
 	fi
 
@@ -190,7 +189,7 @@ grep -rl "[[$KMVAR_Old_Title]]" . | while read -r f ; do
 	# Save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
 	touch "$f.temp"
 	touch -r "$f" "$f.temp"
-	sed -i "" "s|\[\[$KMVAR_Old_Title\]\]|\[\[$KMVAR_New_Title\]\]|g" "$f"
+	sed -i "" "s|\[\[$KMVAR_Instance_Old_Title\]\]|\[\[$KMVAR_Instance_New_Title\]\]|g" "$f"
 	touch -r "$f.temp" "$f"
 	rm "$f.temp"
 
@@ -210,7 +209,7 @@ done</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>615368427.55246997</real>
+				<real>615804117.946558</real>
 				<key>Name</key>
 				<string>Rename Note and Update [[Wikilinks]] to It, with Backups</string>
 				<key>Triggers</key>
