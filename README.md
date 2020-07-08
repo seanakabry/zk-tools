@@ -80,6 +80,8 @@ These are general to most or all macros. Points specific to individual macros ar
 	birthtime=$(date -j -f "%b  %d %T %Y" "$(stat -f "%SB" "$f")" +"%Y%m%d%H%M")
 	```
 
+*	Better account for special characters such as square brackets in find-replace strings.
+
 # Macros
 
 ## Append UIDs to Filenames
