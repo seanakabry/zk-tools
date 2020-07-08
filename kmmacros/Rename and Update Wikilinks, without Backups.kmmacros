@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wMVwKaHR0
+						Y2YyIFZlcnNpb24gMS4wMlwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						wzQEX7YBAAAAAAAAAAAAAA==
+						Gk8FX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -160,12 +160,12 @@ mv "$f" "${f//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
 grep -rl "[[$KMVAR_Instance_Old_Title]]" . | while read -r f ; do
 
 	# Update the wikilinks.
-	# Save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
-	touch "$f.temp"
-	touch -r "$f" "$f.temp"
+	# Uncomment the commented lines in the following block if you prefer that the modification times of notes containing wikilinks are *not* updated. These lines save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
+	# touch "$f.temp"
+	# touch -r "$f" "$f.temp"
 	sed -i "" "s|\[\[$KMVAR_Instance_Old_Title\]\]|\[\[$KMVAR_Instance_New_Title\]\]|g" "$f"
-	touch -r "$f.temp" "$f"
-	rm "$f.temp"
+	# touch -r "$f.temp" "$f"
+	# rm "$f.temp"
 
 done</string>
 						<key>TimeOutAbortsMacro</key>
@@ -183,7 +183,7 @@ done</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>615804208.61317599</real>
+				<real>615877255.90271103</real>
 				<key>Name</key>
 				<string>Rename Note and Update [[Wikilinks]] to It, without Backups</string>
 				<key>Triggers</key>

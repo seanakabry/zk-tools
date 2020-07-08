@@ -8,37 +8,34 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 
 ## Page Contents
 
-* [Assumptions](#assumptions)
-* [How to Use the Macros](#how-to-use-the-macros)
-* [Relevent Shell Scripting Resources](#relevant-shell-scripting-resources)
-* [Macros](#macros)
+*	[Assumptions](#assumptions)
+*	[How to Use the Macros](#how-to-use-the-macros)
+*	[Relevent Shell Scripting Resources](#relevant-shell-scripting-resources)
+*	[Macros](#macros)
+	* 	[Areas for Improvement](#areas-for-improvement)
 
 | Macro | Function | v. | Updated |
 | :---- | -------- | :- | :------------ |
 | [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.00 | 2020-07-08 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.00 | 2020-07-08 |
-| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.01 | 2020-07-07 |
+| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
 | [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.00 | 2020-07-07 |
-| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.01 | 2020-07-07 |
+| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.02 | 2020-07-08 |
 
 ## Assumptions
 
-The tools assume:
+In general, the tools assume:
 
 * 	Your notes lie flat in a single directory (no subdirectories).
 
 *	Your notes are `[[wikilinked]]` using full filenames rather than explicit UIDs.
 
-	By "full filenames" I mean full basenames, where `[[Another Note]]` links to `Another Note.txt`, without regard to the file extension.
+	By "full filenames" I really mean full basenames, where `[[Another Note]]` links to `Another Note.txt`, without regard to the file extension.
 
 	An explicit UID (unique identifier) is a part of the filename of a note which follows a consistent syntax (usually a timestamp prefix like `202007011200`) and is supposed never to change, like a primary key for a record in a database. The wikilink `[[202007011200]]` would point to `202007011200 Another Note.txt`, and continue to point to the same note even if that note is renamed `202007011200 Edited Note.txt`. This robustness is one of the chief benefits of using explicit UIDs. Obvious drawbacks include the interruption of the flow of text with a long, usually non-semantic string of characters, and the difficulty of specifying the UID of a note one has in mind (made trivially easy by a wikilink autocompletion macro, such as by Zettelkasten.de forum users [kaidoh](https://forum.zettelkasten.de/discussion/176/quick-insertion-of-links-to-other-zettels-with-type-ahead-search-using-keyboard-maestro) or [Will](https://forum.zettelkasten.de/discussion/comment/2516/#Comment_2516)).
 
 	The Archive [recognises UIDs](https://zettelkasten.de/the-archive/help/#how-do-i-create-links-between-notes). nvUltra [does not](https://twitter.com/nvUltraApp/status/1268882547066515458).
-
-*	You prefer that automated operations affecting multiple notes leave the modification times of those notes unchanged.
-	
-	An example of a case in which this behaviour is desireable is if you use a 'find and replace' macro to correct a spelling mistake made consistently across many notes. If you sort your notes by time of last modification, you probably want to see a list of the notes you've been working on recently, rather than the notes which contained that spelling mistake.
 
 *	You trust that the notes you're working with don't include malicious command injections. I've taken precautions where I know to, but I'm new to shell scripting and this hasn't been front of mind.
 
@@ -60,16 +57,28 @@ The tools assume:
 
 If you are also new to shell scripting and want to modify the scripts above, these pages may be useful:
 
-* Keyboard Maestro
-	* [Wiki: Execute a Shell Script](https://wiki.keyboardmaestro.com/action/Execute_a_Shell_Script)
-	* [Forum: Bash Shell Script Needs a Variable Passed with Characters “Escaped”](https://forum.keyboardmaestro.com/t/bash-shell-script-needs-a-variable-passed-with-characters-escaped/14130)
-* [Greg's Wiki](https://mywiki.wooledge.org/EnglishFrontPage)
-	* [Bash Guide: Practices](http://mywiki.wooledge.org/BashGuide/Practices)
-	* [Using `find`](http://mywiki.wooledge.org/UsingFind)
-	* [How can I rename all my \*.foo files to \*.bar, or convert spaces to underscores, or convert upper-case file names to lower case?](https://mywiki.wooledge.org/BashFAQ/030)
-* File path string manipulation (via [this SO answer](https://stackoverflow.com/a/2664746))
-	* [`bash` String Manipulations](http://tldp.org/LDP/LG/issue18/bash.html)
-	* [Shell Command Language: 2.6.2 Parameter Expansion](https://pubs.opengroup.org/)
+*	Keyboard Maestro
+	*	[Wiki: Execute a Shell Script](https://wiki.keyboardmaestro.com/action/Execute_a_Shell_Script)
+	*	[Forum: Bash Shell Script Needs a Variable Passed with Characters “Escaped”](https://forum.keyboardmaestro.com/t/bash-shell-script-needs-a-variable-passed-with-characters-escaped/14130)
+*	[Greg's Wiki](https://mywiki.wooledge.org/EnglishFrontPage)
+	*	[Bash Guide: Practices](http://mywiki.wooledge.org/BashGuide/Practices)
+	*	[Using `find`](http://mywiki.wooledge.org/UsingFind)
+	*	[How can I rename all my \*.foo files to \*.bar, or convert spaces to underscores, or convert upper-case file names to lower case?](https://mywiki.wooledge.org/BashFAQ/030)
+*	File path string manipulation (via [this SO answer](https://stackoverflow.com/a/2664746))
+	*	[`bash` String Manipulations](http://tldp.org/LDP/LG/issue18/bash.html)
+	*	[Shell Command Language: 2.6.2 Parameter Expansion](https://pubs.opengroup.org/)
+
+## Areas for Improvement
+
+These are general to most or all macros. Points specific to individual macros are noted below.
+
+*	Preserve original creation times, preferably without the use of `SetFile`, which requires that the user have the Command Line Tools for Xcode installed.
+	
+	The creation time of a file can be saved as a string in syntax preferred by `touch` with:
+
+	```sh
+	birthtime=$(date -j -f "%b  %d %T %Y" "$(stat -f "%SB" "$f")" +"%Y%m%d%H%M")
+	```
 
 # Macros
 
@@ -79,7 +88,7 @@ Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected
 
 ### Links
 
-* [Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Append%20UIDs%20to%20Filenames.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Append%20UIDs%20to%20Filenames.kmmacros) (right click and 'save link/target')
 
 ### Invoked Shell Script
 
@@ -89,9 +98,9 @@ basename="${KMVAR_Instance_Files%.*}"
 mv "$KMVAR_Instance_Files" "${basename} ($KMVAR_Instance_UID_to_Assign).${extension}"
 ```
 
-### To Be Improved
+### Areas for Improvement
 
-* The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
+*	The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
 
 ### Changelog
 
@@ -105,7 +114,7 @@ Copies all notes to a timestamped backup directory.
 
 ### Links
 
-* [Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Back%20Up.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Back%20Up.kmmacros) (right click and 'save link/target')
 
 ### Invoked Shell Script
 
@@ -117,7 +126,7 @@ cp -a "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(dat
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
-| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
+| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
 
 ## Insert UID
@@ -126,11 +135,11 @@ Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. The macro shares a gl
 
 ### Links
 
-* [Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Insert%20UID.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Insert%20UID.kmmacros) (right click and 'save link/target')
 
-### To Be Improved
+### Areas for Improvement
 
-* The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
+*	The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
 
 ### Changelog
 
@@ -140,7 +149,9 @@ Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. The macro shares a gl
 
 ## Find and Replace
 
-Performs a find and replace operation on the content but not the titles of all notes. Leaves modification times unchanged.
+Performs a find and replace operation on the content but not the titles of all notes.
+
+To leave the modification times of edited files as they were, uncomment the relevant lines in the invoked shell script. This might be desirable if, in your note-taking software, you sort your notes by modification time and want to see the notes you've been working on recently at the top, rather than the notes updated by this macro. Note that if The Archive is open while this macro is invoked, it won't recognise that the edited files have changed, and you may as a result end up overwriting what this macro has changed.
 
 ### Links
 
@@ -164,25 +175,26 @@ grep -rl "$KMVAR_Instance_Find" . | while read -r f ; do
 	cp -p "$f" "$backup_directory/$f"
 
 	# Perform the replacement.
-	# Save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
-	touch "$f.temp"
-	touch -r "$f" "$f.temp"
+	# Uncomment the commented lines in the following block if you prefer that the modification times of notes containing wikilinks are *not* updated. These lines save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
+	# touch "$f.temp"
+	# touch -r "$f" "$f.temp"
 	sed -i "" "s|$KMVAR_Instance_Find|$KMVAR_Instance_Replace|g" "$f"
-	touch -r "$f.temp" "$f"
-	rm "$f.temp"
+	# touch -r "$f.temp" "$f"
+	# rm "$f.temp"
 
 done
 ```
 
-### To Be Improved
+### Areas for Improvement
 
-* Escape pipes (`|`), which currently break the call to `sed`.
+*	Escape pipes (`|`), which currently break the call to `sed`.
 
 ### Changelog
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
-| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
+| 1.02 | 2020-07-08 | Update modification times by default |
+| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
 
 ## Open File by UID
@@ -197,7 +209,8 @@ Double-clicking the spreadsheet's UID and triggering the macro will open the spr
 
 ### Links
 
-* [Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Open%20File%20by%20UID.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Open%20File%20by%20UID.kmmacros) (right click and 'save link/target')
+*	[Zettelkasten.de forum post for this macro](https://forum.zettelkasten.de/discussion/1235/km-macro-open-a-file-outside-the-zettelkasten-identified-by-a-uid)
 
 ### Invoked Shell Script
 
@@ -205,9 +218,9 @@ Double-clicking the spreadsheet's UID and triggering the macro will open the spr
 open "$(find "$KMVAR_Instance_Documents_Directory" -type f -name "*$KMVAR_Instance_Document_UID*" | head -n1)"
 ```
 
-### To Be Improved
+### Areas for Improvement
 
-* If no match is found, the macro should abort and inform the user.
+*	If no match is found, the macro should abort and inform the user.
 
 ### Changelog
 
@@ -221,30 +234,31 @@ Renames a specified note and updates `[[wikilinks]]` to it.
 
 As per the general assumptions above, this macro assumes that wikilinks always use the full filename of the target note.
 
-If you use UID-only wikilinks, do not use this macro. A principal benefit of a UID scheme is that it should obviate the need for a macro like this.
+If you use UID-only wikilinks, you don't want to use this. A principal benefit of a UID scheme is that it should obviate the need for a macro like this.
+
+To leave the modification times of edited files as they were, uncomment the relevant lines in the invoked shell script. This might be desirable if, in your note-taking software, you sort your notes by modification time and want to see the notes you've been working on recently at the top, rather than the notes updated by this macro. Note that if The Archive is open while this macro is invoked, it won't recognise that the edited files have changed, and you may as a result end up overwriting what this macro has changed.
 
 ### Links
 
 *	Direct links to `.kmmacros`: (right click and 'save link/target')
-	* [with backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Rename%20and%20Update%20Wikilinks%2C%20with%20Backups.kmmacros)
-	* [without backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Rename%20and%20Update%20Wikilinks%2C%20without%20Backups.kmmacros)
-
+	*	[with backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Rename%20and%20Update%20Wikilinks%2C%20with%20Backups.kmmacros)
+	*	[without backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Rename%20and%20Update%20Wikilinks%2C%20without%20Backups.kmmacros)
 *	[Zettelkasten.de forum post for this macro](https://forum.zettelkasten.de/discussion/1230/km-macro-rename-note-and-update-wikilinks-to-it/)
 
 ### Steps in the Macro
 
-1. The user is prompted for the note to be renamed, in an autocomplete list search.
-2. The user is prompted for the new title.
-3. The note to be renamed is backed up and renamed. Its modification time is updated.
-4. All wikilinks to `[[Old Title]]` are replaced with `[[New Title]]`. The modification time of notes other than the one renamed are not updated.
+1.	The user is prompted for the note to be renamed, in an autocomplete list search.
+2.	The user is prompted for the new title.
+3.	The note to be renamed is backed up and renamed. Its modification time is updated.
+4.	All wikilinks to `[[Old Title]]` are replaced with `[[New Title]]`. The modification time of notes other than the one renamed are not updated.
 
-### To Be Improved
+### Areas for Improvement
 
-* The macro should check that a note with the new title doesn't already exist; if does, it should abort.
+*	The macro should check that a note with the new title doesn't already exist; if does, it should abort.
 
-* The shell script compiling a list of all notes should use `find` rather than `ls`, for the reasons described on Greg's Wiki: [Bash Guide: Practices](http://mywiki.wooledge.org/BashGuide/Practices) (under "5. Don't Ever Do These") and [Why you shouldn't parse the output of ls(1)](http://mywiki.wooledge.org/ParsingLs).
+*	The shell script compiling a list of all notes should use `find` rather than `ls`, for the reasons described on Greg's Wiki: [Bash Guide: Practices](http://mywiki.wooledge.org/BashGuide/Practices) (under "5. Don't Ever Do These") and [Why you shouldn't parse the output of ls(1)](http://mywiki.wooledge.org/ParsingLs).
 
-* Escape pipes (`|`), which currently break the call to `sed`.
+*	Escape pipes (`|`), which currently break the call to `sed`.
 
 ### Invoked Shell Scripts
 
@@ -261,14 +275,15 @@ Rename the note and update `[[wikilinks]]` to it, taking backups:
 cd "$KMVAR_Instance_Notes_Directory"
 
 # Create a backup directory.
-backup_subdirectory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
-mkdir "$backup_subdirectory"
+backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
+mkdir "$backup_directory"
 
 f=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
 # Back up the note to be renamed.
-cp -p "$f" "$backup_subdirectory/$f"
+cp -p "$f" "$backup_directory/$f"
 
+touch "$f"
 mv "$f" "${f//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
 
 # Identify notes containing wikilinks to the renamed note.
@@ -279,16 +294,16 @@ grep -rl "[[$KMVAR_Instance_Old_Title]]" . | while read -r f ; do
 	f_basename=${f##*/}
 	f_basename=${f_basename%.*}
 	if [ "$f_basename" != "$KMVAR_Instance_New_Title" ]; then
-		cp -p "$f" "$backup_subdirectory/$f"
+		cp -p "$f" "$backup_directory/$f"
 	fi
 
 	# Update the wikilinks.
-	# Save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
-	touch "$f.temp"
-	touch -r "$f" "$f.temp"
+	# Uncomment the commented lines in the following block if you prefer that the modification times of notes containing wikilinks are *not* updated. These lines save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
+	# touch "$f.temp"
+	# touch -r "$f" "$f.temp"
 	sed -i "" "s|\[\[$KMVAR_Instance_Old_Title\]\]|\[\[$KMVAR_Instance_New_Title\]\]|g" "$f"
-	touch -r "$f.temp" "$f"
-	rm "$f.temp"
+	# touch -r "$f.temp" "$f"
+	# rm "$f.temp"
 
 done
 ```
@@ -297,5 +312,6 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
-| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables to avoid clutter. |
+| 1.02 | 2020-07-08 | Update modification times by default |
+| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
