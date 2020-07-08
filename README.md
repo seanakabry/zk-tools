@@ -21,7 +21,7 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.00 | 2020-07-08 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
 | [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.00 | 2020-07-07 |
-| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.02 | 2020-07-08 |
+| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.03 | 2020-07-09 |
 
 ## Assumptions
 
@@ -287,7 +287,7 @@ touch "$f"
 mv "$f" "${f//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
 
 # Identify notes containing wikilinks to the renamed note.
-grep -rl "[[$KMVAR_Instance_Old_Title]]" . | while read -r f ; do
+grep -rl "\[\[$KMVAR_Instance_Old_Title\]\]" . | while read -r f ; do
 
 	# Back up the notes.
 	# Exclude the just-renamed note, which may include a wikilink to itself (such as in a YAML header).
@@ -312,6 +312,7 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.03 | 2020-07-09 | Add escapes to `grep` calls |
 | 1.02 | 2020-07-08 | Update modification times by default |
 | 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
