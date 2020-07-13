@@ -16,7 +16,7 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 
 | Macro | Function | v. | Updated |
 | :---- | -------- | :- | :------------ |
-| [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.00 | 2020-07-08 |
+| [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.01 | 2020-07-13 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.00 | 2020-07-08 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
@@ -108,6 +108,7 @@ mv "$KMVAR_Instance_Files" "${basename} ($KMVAR_Instance_UID_to_Assign).${extens
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.01 | 2020-07-13 | Remove unnecessary braces |
 | 1.00 | 2020-07-08 | Initial commit |
 
 ## Back Up Notes

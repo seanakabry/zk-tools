@@ -14,6 +14,41 @@
 				<array>
 					<dict>
 						<key>MacroActionType</key>
+						<string>Comment</string>
+						<key>StyledText</key>
+						<data>
+						cnRmZAAAAAADAAAAAgAAAAcAAABU
+						WFQucnRmAQAAAC67AQAAKwAAAAEA
+						AACzAQAAe1xydGYxXGFuc2lcYW5z
+						aWNwZzEyNTJcY29jb2FydGYyNTEz
+						Clxjb2NvYXRleHRzY2FsaW5nMFxj
+						b2NvYXBsYXRmb3JtMHtcZm9udHRi
+						bFxmMFxmc3dpc3NcZmNoYXJzZXQw
+						IEhlbHZldGljYTt9CntcY29sb3J0
+						Ymw7XHJlZDI1NVxncmVlbjI1NVxi
+						bHVlMjU1O1xyZWQwXGdyZWVuMFxi
+						bHVlMDt9CntcKlxleHBhbmRlZGNv
+						bG9ydGJsOztcY3NzcmdiXGMwXGMw
+						XGMwXGM4NDcwNlxjbmFtZSBjb250
+						cm9sVGV4dENvbG9yO30KXHBhcmRc
+						dHg1NjBcdHgxMTIwXHR4MTY4MFx0
+						eDIyNDBcdHgyODAwXHR4MzM2MFx0
+						eDM5MjBcdHg0NDgwXHR4NTA0MFx0
+						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
+						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
+						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
+						Y2YyIFZlcnNpb246IDEuMDFcClVS
+						STogaHR0cHM6Ly9naXRodWIuY29t
+						L3NlYW5ha2FicnkvemstdG9vbHN9
+						AQAAACMAAAABAAAABwAAAFRYVC5y
+						dGYQAAAAkjQEX7YBAAAAAAAAAAAA
+						AA==
+						</data>
+						<key>Title</key>
+						<string>Macro Metadata</string>
+					</dict>
+					<dict>
+						<key>MacroActionType</key>
 						<string>SetVariableToText</string>
 						<key>Text</key>
 						<string>1</string>
@@ -134,7 +169,7 @@
 								<key>Text</key>
 								<string>extension="${KMVAR_Instance_Files##*.}"
 basename="${KMVAR_Instance_Files%.*}"
-mv "$KMVAR_Instance_Files" "${basename} ($KMVAR_Instance_UID_to_Assign).${extension}"</string>
+mv "$KMVAR_Instance_Files" "$basename ($KMVAR_Instance_UID_to_Assign).$extension"</string>
 								<key>TimeOutAbortsMacro</key>
 								<true/>
 								<key>TrimResults</key>
@@ -232,7 +267,7 @@ mv "$KMVAR_Instance_Files" "${basename} ($KMVAR_Instance_UID_to_Assign).${extens
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>615824856.64498603</real>
+				<real>616307014.83423197</real>
 				<key>Name</key>
 				<string>Append UIDs to Filenames</string>
 				<key>Triggers</key>
