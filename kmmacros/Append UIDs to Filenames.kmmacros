@@ -65,12 +65,12 @@
 									<array>
 										<dict>
 											<key>ConditionType</key>
-											<string>Text</string>
-											<key>Text</key>
-											<string>%Variable%Last UID%</string>
-											<key>TextConditionType</key>
+											<string>Variable</string>
+											<key>Variable</key>
+											<string>Last UID</string>
+											<key>VariableConditionType</key>
 											<string>IsBefore</string>
-											<key>TextValue</key>
+											<key>VariableValue</key>
 											<string>%ICUDateTime%YYYYMMddHHmm%</string>
 										</dict>
 									</array>
@@ -112,12 +112,12 @@
 											<array>
 												<dict>
 													<key>ConditionType</key>
-													<string>Text</string>
-													<key>Text</key>
-													<string>%Variable%Last UID%</string>
-													<key>TextConditionType</key>
+													<string>Variable</string>
+													<key>Variable</key>
+													<string>Last UID</string>
+													<key>VariableConditionType</key>
 													<string>IsBefore</string>
-													<key>TextValue</key>
+													<key>VariableValue</key>
 													<string>%ICUDateTimePlus%Instance i%Minutes%YYYYMMddHHmm%</string>
 												</dict>
 											</array>
@@ -191,7 +191,7 @@ mv "$KMVAR_Instance_Files" "$basename ($KMVAR_Last_UID).$extension"</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>616410321.43536901</real>
+				<real>616411234.74705696</real>
 				<key>Name</key>
 				<string>Append UIDs to Filenames</string>
 				<key>Triggers</key>
