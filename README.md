@@ -16,9 +16,9 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 
 | Macro | Function | v. | Updated |
 | :---- | -------- | :- | :------------ |
-| [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.01 | 2020-07-13 |
+| [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.02 | 2020-07-14 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
-| [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.00 | 2020-07-08 |
+| [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.01 | 2020-07-14 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
 | [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.00 | 2020-07-07 |
 | [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.03 | 2020-07-09 |
@@ -100,14 +100,11 @@ basename="${KMVAR_Instance_Files%.*}"
 mv "$KMVAR_Instance_Files" "${basename} ($KMVAR_Instance_UID_to_Assign).${extension}"
 ```
 
-### Areas for Improvement
-
-*	The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
-
 ### Changelog
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.02 | 2020-07-14 | Save only most recent UID to `Last UID` |
 | 1.01 | 2020-07-13 | Remove unnecessary braces |
 | 1.00 | 2020-07-08 | Initial commit |
 
@@ -140,14 +137,11 @@ Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. The macro shares a gl
 
 *	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Insert%20UID.kmmacros) (right click and 'save link/target')
 
-### Areas for Improvement
-
-*	The shell script which performs house-keeping on the global variable `Last UID` should delete any UIDs corresponding to times in the past.
-
 ### Changelog
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.01 | 2020-07-14 | Save only most recent UID to `Last UID` |
 | 1.00 | 2020-07-08 | Initial commit |
 
 ## Find and Replace

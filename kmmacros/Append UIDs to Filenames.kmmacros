@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb246IDEuMDFcClVS
+						Y2YyIFZlcnNpb246IDEuMDJcClVS
 						STogaHR0cHM6Ly9naXRodWIuY29t
 						L3NlYW5ha2FicnkvemstdG9vbHN9
 						AQAAACMAAAABAAAABwAAAFRYVC5y
-						dGYQAAAAkjQEX7YBAAAAAAAAAAAA
+						dGYQAAAAAHUNX7YBAAAAAAAAAAAA
 						AA==
 						</data>
 						<key>Title</key>
@@ -69,13 +69,13 @@
 											<key>Text</key>
 											<string>%Variable%Last UID%</string>
 											<key>TextConditionType</key>
-											<string>Contains</string>
+											<string>IsBefore</string>
 											<key>TextValue</key>
 											<string>%ICUDateTime%YYYYMMddHHmm%</string>
 										</dict>
 									</array>
 									<key>ConditionListMatch</key>
-									<string>All</string>
+									<string>None</string>
 								</dict>
 								<key>ElseActions</key>
 								<array>
@@ -83,11 +83,9 @@
 										<key>MacroActionType</key>
 										<string>SetVariableToText</string>
 										<key>Text</key>
-										<string>%ICUDateTime%YYYYMMddHHmm%,</string>
+										<string>%ICUDateTime%YYYYMMddHHmm%</string>
 										<key>Variable</key>
 										<string>Last UID</string>
-										<key>Where</key>
-										<string>Prepend</string>
 									</dict>
 								</array>
 								<key>MacroActionType</key>
@@ -118,13 +116,13 @@
 													<key>Text</key>
 													<string>%Variable%Last UID%</string>
 													<key>TextConditionType</key>
-													<string>Contains</string>
+													<string>IsBefore</string>
 													<key>TextValue</key>
 													<string>%ICUDateTimePlus%Instance i%Minutes%YYYYMMddHHmm%</string>
 												</dict>
 											</array>
 											<key>ConditionListMatch</key>
-											<string>All</string>
+											<string>None</string>
 										</dict>
 										<key>MacroActionType</key>
 										<string>While</string>
@@ -135,23 +133,13 @@
 										<key>MacroActionType</key>
 										<string>SetVariableToText</string>
 										<key>Text</key>
-										<string>%ICUDateTimePlus%Instance i%Minutes%YYYYMMddHHmm%,</string>
+										<string>%ICUDateTimePlus%Instance i%Minutes%YYYYMMddHHmm%</string>
 										<key>Variable</key>
 										<string>Last UID</string>
-										<key>Where</key>
-										<string>Prepend</string>
 									</dict>
 								</array>
 								<key>TimeOutAbortsMacro</key>
 								<true/>
-							</dict>
-							<dict>
-								<key>MacroActionType</key>
-								<string>SetVariableToText</string>
-								<key>Text</key>
-								<string>%Variable%Last UID[1]%</string>
-								<key>Variable</key>
-								<string>Instance UID to Assign</string>
 							</dict>
 							<dict>
 								<key>DisplayKind</key>
@@ -169,7 +157,7 @@
 								<key>Text</key>
 								<string>extension="${KMVAR_Instance_Files##*.}"
 basename="${KMVAR_Instance_Files%.*}"
-mv "$KMVAR_Instance_Files" "$basename ($KMVAR_Instance_UID_to_Assign).$extension"</string>
+mv "$KMVAR_Instance_Files" "$basename ($KMVAR_Last_UID).$extension"</string>
 								<key>TimeOutAbortsMacro</key>
 								<true/>
 								<key>TrimResults</key>
@@ -197,77 +185,13 @@ mv "$KMVAR_Instance_Files" "$basename ($KMVAR_Instance_UID_to_Assign).$extension
 						<key>Variable</key>
 						<string>Instance Files</string>
 					</dict>
-					<dict>
-						<key>ActionColor</key>
-						<string>Purple</string>
-						<key>MacroActionType</key>
-						<string>Comment</string>
-						<key>StyledText</key>
-						<data>
-						cnRmZAAAAAADAAAAAgAAAAcAAABU
-						WFQucnRmAQAAAC7IAQAAKwAAAAEA
-						AADAAQAAe1xydGYxXGFuc2lcYW5z
-						aWNwZzEyNTJcY29jb2FydGYyNTEz
-						Clxjb2NvYXRleHRzY2FsaW5nMFxj
-						b2NvYXBsYXRmb3JtMHtcZm9udHRi
-						bFxmMFxmc3dpc3NcZmNoYXJzZXQw
-						IEhlbHZldGljYTt9CntcY29sb3J0
-						Ymw7XHJlZDI1NVxncmVlbjI1NVxi
-						bHVlMjU1O1xyZWQwXGdyZWVuMFxi
-						bHVlMDt9CntcKlxleHBhbmRlZGNv
-						bG9ydGJsOztcY3NzcmdiXGMwXGMw
-						XGMwXGM4NDcwNlxjbmFtZSBjb250
-						cm9sVGV4dENvbG9yO30KXHBhcmRc
-						dHg1NjBcdHgxMTIwXHR4MTY4MFx0
-						eDIyNDBcdHgyODAwXHR4MzM2MFx0
-						eDM5MjBcdHg0NDgwXHR4NTA0MFx0
-						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
-						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
-						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFRoZSBmb2xsb3dpbmcgaXMg
-						aG91c2Uta2VlcGluZyBvbiB0aGUg
-						Z2xvYmFsIHZhcmlhYmxlIFwnOTNM
-						YXN0IFVJRFwnOTQufQEAAAAjAAAA
-						AQAAAAcAAABUWFQucnRmEAAAAAmB
-						BF+2AQAAAAAAAAAAAAA=
-						</data>
-						<key>Title</key>
-						<string>Clean up "Last UID"</string>
-					</dict>
-					<dict>
-						<key>DisplayKind</key>
-						<string>Variable</string>
-						<key>HonourFailureSettings</key>
-						<true/>
-						<key>IncludeStdErr</key>
-						<false/>
-						<key>MacroActionType</key>
-						<string>ExecuteShellScript</string>
-						<key>Path</key>
-						<string></string>
-						<key>Source</key>
-						<string>Nothing</string>
-						<key>Text</key>
-						<string>echo $(cut -d "," -f 1-50 &lt;&lt;&lt;"$KMVAR_Last_UID")
-</string>
-						<key>TimeOutAbortsMacro</key>
-						<true/>
-						<key>TrimResults</key>
-						<true/>
-						<key>TrimResultsNew</key>
-						<true/>
-						<key>UseText</key>
-						<true/>
-						<key>Variable</key>
-						<string>Last UID</string>
-					</dict>
 				</array>
 				<key>CreationDate</key>
-				<real>615824162.24412704</real>
+				<real>616410295.09551895</real>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>616307014.83423197</real>
+				<real>616410321.43536901</real>
 				<key>Name</key>
 				<string>Append UIDs to Filenames</string>
 				<key>Triggers</key>
@@ -284,7 +208,7 @@ mv "$KMVAR_Instance_Files" "$basename ($KMVAR_Instance_UID_to_Assign).$extension
 					</dict>
 				</array>
 				<key>UID</key>
-				<string>D744B2E0-3D3F-49EE-BA27-A7212F827272</string>
+				<string>F689EBB7-9CC1-479E-8EE2-468430D8CCBE</string>
 			</dict>
 		</array>
 		<key>Name</key>
