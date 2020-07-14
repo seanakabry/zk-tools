@@ -30,7 +30,7 @@ In general, the tools assume:
 
 * 	Your notes lie flat in a single directory (no subdirectories).
 
-*	Your notes are `[[wikilinked]]` using full filenames rather than explicit UIDs.
+*	Your notes are `[[wikilinked]]` using full filenames rather than explicit UIDs. (A number of the macros assume that explicit UIDs are used to refer to files outside the notes directory.)
 
 	By "full filenames" I really mean full basenames, where `[[Another Note]]` links to `Another Note.txt`, without regard to the file extension.
 
@@ -155,8 +155,8 @@ Keyboard Maestro has [more convenient ways](https://wiki.keyboardmaestro.com/Tok
 5.	Execute the expression `copy(document.title)` to copy the active page's title, then save it to a variable. (If `copy(document.title)` appears anywhere in the resulting text file, try lengthening the pause preceding this step.)
 6.	Close the developer tools.
 7.	Assign a UID, checking for clashes.
-8.	Create the text file.
-9.	Open the text file for checking by the user.
+8.	Create the text file with the UID as its filename.
+9.	Open the text file for the user to check.
 
 ### Changelog
 
