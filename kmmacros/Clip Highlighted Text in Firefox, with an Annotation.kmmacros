@@ -52,7 +52,7 @@
 						<key>MacroActionType</key>
 						<string>SetVariableToText</string>
 						<key>Text</key>
-						<string>/Volumes/Knarr/Notebooks/Clipbook</string>
+						<string>/Volumes/Notebooks/Clipbook</string>
 						<key>Variable</key>
 						<string>Instance Destination Folder</string>
 					</dict>
@@ -392,7 +392,7 @@ Tags: #annotated
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>616412956.65260601</real>
+				<real>616414401.77602303</real>
 				<key>Name</key>
 				<string>Clip Highlighted Text in Firefox, with an Annotation</string>
 				<key>Triggers</key>

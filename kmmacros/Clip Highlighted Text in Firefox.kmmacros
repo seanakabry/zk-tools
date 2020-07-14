@@ -52,7 +52,7 @@
 						<key>MacroActionType</key>
 						<string>SetVariableToText</string>
 						<key>Text</key>
-						<string>/Volumes/Knarr/Notebooks/Clipbook</string>
+						<string>/Volumes/Notebooks/Clipbook</string>
 						<key>Variable</key>
 						<string>Instance Destination Folder</string>
 					</dict>
@@ -357,7 +357,7 @@ Date: %ICUDateTime%MMMM dd, YYYY% at %ICUDateTime%hh:mma%
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>616412265.88542402</real>
+				<real>616414405.06606102</real>
 				<key>Name</key>
 				<string>Clip Highlighted Text in Firefox</string>
 				<key>Triggers</key>
