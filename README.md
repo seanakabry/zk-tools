@@ -18,6 +18,7 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 | :---- | -------- | :- | :------------ |
 | [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.02 | 2020-07-14 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
+| [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.01 | 2020-07-14 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
 | [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.00 | 2020-07-07 |
@@ -86,7 +87,9 @@ These are general to most or all macros. Points specific to individual macros ar
 
 ## Append UIDs to Filenames
 
-Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. The macro shares a global variable `Last UID` with [Insert UID](#insert-uid) so that UIDs assigned in rapid succession (that is, more than one in a given clock minute) don't overlap.
+Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder.
+
+This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a number of other macros on this page so that UIDs assigned in rapid succession (more than one in a given clock minute) don't clash.
 
 ### Links
 
@@ -129,9 +132,43 @@ cp -a "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(dat
 | 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
 
+## Clip Highlighted Text in Firefox
+
+Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation.
+
+This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a number of other macros on this page so that UIDs assigned in rapid succession (more than one in a given clock minute) don't clash.
+
+Keyboard Maestro has [more convenient ways](https://wiki.keyboardmaestro.com/Tokens) of fetching the title and URL of the active page from Safari and Chrome, which would obviate steps 3 to 6 below.
+
+### Links
+
+*	Direct link to `.kmmacros` (right click and 'save link/target')
+	*	[clip only](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Clip%20Highlighted%20Text%20in%20Firefox.kmmacros)
+	*	[clip and annotate](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Clip%20Highlighted%20Text%20in%20Firefox,%20with%20an%20Annotation.kmmacros)
+
+### Steps in the Macro
+
+1.	(Prompt the user for a note to be appended to the clipped text.)
+2.	Copy the selected text and save it to a variable.
+3.	Simulate the keystroke `⌘L` to select the active page's URL, then copy and saved it to a variable.
+4.	Simulate the keystroke `⌘⌥K` to open Firefox's web console. Pause for the console to become active.
+5.	Execute the expression `copy(document.title)` to copy the active page's title, then save it to a variable. (If `copy(document.title)` appears anywhere in the resulting text file, try lengthening the pause preceding this step.)
+6.	Close the developer tools.
+7.	Assign a UID, checking for clashes.
+8.	Create the text file.
+9.	Open the text file for checking by the user.
+
+### Changelog
+
+| Version | Date | Changes |
+| ------- | ---- | ------- |
+| 1.00 | 2020-07-14 | Initial commit |
+
 ## Insert UID
 
-Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. The macro shares a global variable `Last UID` with [Append UIDs to Filenames](#append-uids-to-filenames) so that UIDs assigned in rapid succession (that is, more than one in a given clock minute) don't overlap.
+Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor.
+
+This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a number of other macros on this page so that UIDs assigned in rapid succession (more than one in a given clock minute) don't clash.
 
 ### Links
 
@@ -244,10 +281,10 @@ To leave the modification times of edited files as they were, uncomment the rele
 
 ### Steps in the Macro
 
-1.	The user is prompted for the note to be renamed, in an autocomplete list search.
-2.	The user is prompted for the new title.
-3.	The note to be renamed is backed up and renamed. Its modification time is updated.
-4.	All wikilinks to `[[Old Title]]` are replaced with `[[New Title]]`. The modification time of notes other than the one renamed are not updated.
+1.	Prompt the user for the note to be renamed, in an auto-complete list search.
+2.	Prompt the user for the new title.
+3.	Back up and rename the subject note.
+4.	Back up all notes containing `[[Old Title]]`, and replace all instances of `[[Old Title]]` with `[[New Title]]`.
 
 ### Areas for Improvement
 
