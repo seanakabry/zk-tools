@@ -34,7 +34,7 @@ In general, the tools assume:
 
 	By "full filenames" I really mean full basenames, where `[[Another Note]]` links to `Another Note.txt`, without regard to the file extension.
 
-	An explicit UID (unique identifier) is a part of the filename of a note which follows a consistent syntax (usually a timestamp prefix like `202007011200`) and is supposed never to change, like a primary key for a record in a database. The wikilink `[[202007011200]]` would point to `202007011200 Another Note.txt`, and continue to point to the same note even if that note is renamed `202007011200 Edited Note.txt`. This robustness is one of the chief benefits of using explicit UIDs. Obvious drawbacks include the interruption of the flow of text with a long, usually non-semantic string of characters, and the difficulty of specifying the UID of a note one has in mind (made trivially easy by a wikilink autocompletion macro, such as by Zettelkasten.de forum users [kaidoh](https://forum.zettelkasten.de/discussion/176/quick-insertion-of-links-to-other-zettels-with-type-ahead-search-using-keyboard-maestro) or [Will](https://forum.zettelkasten.de/discussion/comment/2516/#Comment_2516)).
+	An explicit UID (unique identifier) is a part of the filename of a note which follows a consistent syntax (usually a timestamp prefix like `202007011200`) and is supposed never to change, like a primary key for a record in a database. The wikilink `[[202007011200]]` would point to `202007011200 Another Note.txt`, and continue to point to the same note even if that note is renamed `202007011200 Edited Note.txt`. This robustness is one of the chief benefits of using explicit UIDs. Obvious drawbacks include the interruption of the flow of text with a long, usually non-semantic string of characters, and the difficulty of specifying the UID of a note one has in mind (made trivially easy by a wikilink auto-completion macro, such as by Zettelkasten.de forum users [kaidoh](https://forum.zettelkasten.de/discussion/176/quick-insertion-of-links-to-other-zettels-with-type-ahead-search-using-keyboard-maestro) or [Will](https://forum.zettelkasten.de/discussion/comment/2516/#Comment_2516)).
 
 	The Archive [recognises UIDs](https://zettelkasten.de/the-archive/help/#how-do-i-create-links-between-notes). nvUltra [does not](https://twitter.com/nvUltraApp/status/1268882547066515458).
 
@@ -56,7 +56,7 @@ In general, the tools assume:
 
 ## Relevant Shell Scripting Resources
 
-If you are also new to shell scripting and want to modify the scripts above, these pages may be useful:
+If you are also new to shell scripting and want to modify the scripts below, these pages may be useful:
 
 *	Keyboard Maestro
 	*	[Wiki: Execute a Shell Script](https://wiki.keyboardmaestro.com/action/Execute_a_Shell_Script)
@@ -129,7 +129,7 @@ cp -a "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(dat
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
-| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
+| 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
 
 ## Clip Highlighted Text in Firefox
@@ -228,7 +228,7 @@ done
 | Version | Date | Changes |
 | ------- | ---- | ------- |
 | 1.02 | 2020-07-08 | Update modification times by default |
-| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
+| 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
 
 ## Open File by UID
@@ -348,5 +348,5 @@ done
 | ------- | ---- | ------- |
 | 1.03 | 2020-07-09 | Add escapes to `grep` calls |
 | 1.02 | 2020-07-08 | Update modification times by default |
-| 1.01 | 2020-07-07 | Uses [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
+| 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
