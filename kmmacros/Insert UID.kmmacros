@@ -37,24 +37,14 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wMVwKaHR0
+						Y2YyIFZlcnNpb24gMS4wMlwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						wzQEX7YBAAAAAAAAAAAAAA==
+						Gk8FX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
-					</dict>
-					<dict>
-						<key>MacroActionType</key>
-						<string>CopyClipboard</string>
-						<key>TargetNamedClipboardRedundantDisplayName</key>
-						<string>Temporary</string>
-						<key>TargetNamedClipboardUID</key>
-						<string>4B45D76C-695C-4DC2-8FE3-9AD727922826</string>
-						<key>TargetUseNamedClipboard</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>MacroActionType</key>
@@ -157,13 +147,9 @@
 					</dict>
 					<dict>
 						<key>MacroActionType</key>
-						<string>CopyClipboard</string>
-						<key>SourceNamedClipboardRedundantDisplayName</key>
-						<string>Temporary</string>
-						<key>SourceNamedClipboardUID</key>
-						<string>4B45D76C-695C-4DC2-8FE3-9AD727922826</string>
-						<key>SourceUseNamedClipboard</key>
-						<true/>
+						<string>DeletePastClipboard</string>
+						<key>PastExpression</key>
+						<string>0</string>
 					</dict>
 				</array>
 				<key>CreationDate</key>
@@ -171,7 +157,7 @@
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>616410604.02067995</real>
+				<real>616646668.17780697</real>
 				<key>Name</key>
 				<string>Insert UID</string>
 				<key>Triggers</key>

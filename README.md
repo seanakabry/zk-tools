@@ -19,9 +19,9 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 | [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.02 | 2020-07-14 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
 | [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
-| [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.01 | 2020-07-14 |
+| [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.02 | 2020-07-17 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
-| [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.00 | 2020-07-07 |
+| [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.01 | 2020-07-17 |
 | [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.03 | 2020-07-09 |
 
 ## Assumptions
@@ -178,6 +178,7 @@ This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a nu
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.02 | 2020-07-17 | Use "Delete Past Clipboard" |
 | 1.01 | 2020-07-14 | Save only most recent UID to `Last UID` |
 | 1.00 | 2020-07-08 | Initial commit |
 
@@ -260,6 +261,7 @@ open "$(find "$KMVAR_Instance_Documents_Directory" -type f -name "*$KMVAR_Instan
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.01 | 2020-07-17 | Use "Delete Past Clipboard" |
 | 1.00 | 2020-07-07 | Initial commit |
 
 ## Rename and Update Wikilinks
