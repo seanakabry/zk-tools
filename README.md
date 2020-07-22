@@ -21,8 +21,8 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 | [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.02 | 2020-07-17 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
-| [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.03 | 2020-07-22 |
-| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.04 | 2020-07-22 |
+| [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.04 | 2020-07-23 |
+| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.05 | 2020-07-23 |
 
 ## Assumptions
 
@@ -250,7 +250,7 @@ Double-clicking the spreadsheet's UID and triggering the macro will open the spr
 ### Invoked Shell Script
 
 ```sh
-open "$(mdfind "kMDItemFSName=*$KMVAR_Instance_Document_UID*" | head -n1)"
+open "$(mdfind 'kMDItemFSName=="'"*$KMVAR_Instance_UID*"'"' | head -n1)"
 ```
 
 ### Areas for Improvement
@@ -261,6 +261,7 @@ open "$(mdfind "kMDItemFSName=*$KMVAR_Instance_Document_UID*" | head -n1)"
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.04 | 2020-07-23 | Fix quoting to account for spaces in KM variables |
 | 1.03 | 2020-07-22 | Use `mdfind` in place of `find` |
 | 1.02 | 2020-07-22 | Allow folders as well as files to be opened |
 | 1.01 | 2020-07-17 | Use "Delete Past Clipboard" |
@@ -316,7 +317,7 @@ cd "$KMVAR_Instance_Notes_Directory"
 backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
 mkdir "$backup_directory"
 
-f=$(mdfind "kMDItemFSName=$KMVAR_Instance_Old_Title.*" -onlyin .)
+f=$(mdfind 'kMDItemFSName=="'"$KMVAR_Instance_Old_Title.*"'"' -onlyin .)
 # Alternatively, using `find`:
 # f=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
@@ -352,6 +353,7 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.05 | 2020-07-23 | Fix quoting to account for spaces in KM variables |
 | 1.04 | 2020-07-22 | Use `mdfind` in place of `find` |
 | 1.03 | 2020-07-09 | Add escapes to `grep` calls |
 | 1.02 | 2020-07-08 | Update modification times by default |

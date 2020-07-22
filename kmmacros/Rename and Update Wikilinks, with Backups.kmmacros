@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wNFwKaHR0
+						Y2YyIFZlcnNpb24gMS4wNVwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						FwIYX7YBAAAAAAAAAAAAAA==
+						284YX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -167,7 +167,7 @@ ls -t | sed -e 's/.[^.]*$//'</string>
 backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
 mkdir "$backup_directory"
 
-f=$(mdfind "kMDItemFSName=$KMVAR_Instance_Old_Title.*" -onlyin .)
+f=$(mdfind 'kMDItemFSName=="'"$KMVAR_Instance_Old_Title.*"'"' -onlyin .)
 # Alternatively, using `find`:
 # f=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
@@ -212,7 +212,7 @@ done</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617104665.68799198</real>
+				<real>617154420.87538397</real>
 				<key>Name</key>
 				<string>Rename Note and Update [[Wikilinks]] to It, with Backups</string>
 				<key>Triggers</key>
