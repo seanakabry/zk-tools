@@ -37,24 +37,14 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wMlwKaHR0
+						Y2YyIFZlcnNpb24gMS4wM1wKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						Gk8FX7YBAAAAAAAAAAAAAA==
+						cEsGX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
-					</dict>
-					<dict>
-						<key>ActionColor</key>
-						<string>Yellow</string>
-						<key>MacroActionType</key>
-						<string>SetVariableToText</string>
-						<key>Text</key>
-						<string>/Volumes/Documents</string>
-						<key>Variable</key>
-						<string>Instance Documents Directory</string>
 					</dict>
 					<dict>
 						<key>KeyCode</key>
@@ -92,7 +82,7 @@
 						<key>Source</key>
 						<string>Nothing</string>
 						<key>Text</key>
-						<string>open "$(find "$KMVAR_Instance_Documents_Directory" -name "*$KMVAR_Instance_Document_UID*" | head -n1)"</string>
+						<string>open "$(mdfind "kMDItemFSName=*$KMVAR_Instance_Document_UID*" | head -n1)"</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 						<key>TrimResults</key>
@@ -114,7 +104,7 @@
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617088406.71414495</real>
+				<real>617104699.06925094</real>
 				<key>Name</key>
 				<string>Open File or Folder by UID</string>
 				<key>Triggers</key>

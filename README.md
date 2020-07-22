@@ -4,7 +4,7 @@ This is a repository for [Keyboard Maestro](https://www.keyboardmaestro.com/) ma
 
 The macros are intended as companions to note-taking and -management software such as [nvUltra](https://nvultra.com/) and [The Archive](https://zettelkasten.de/the-archive/). Other such macros are listed in [this Zettelkasten.de forum thread](https://forum.zettelkasten.de/discussion/213/the-archive-keyboard-maestro-alfred-macros).
 
-The shell scripts invoked by these macros (which appear below) may be of some use even to those who don't use Keyboard Maestro. They are intended to be POSIX-compatible and as portable as possible. Variables beginning with `$KMVAR_` are Keyboard Maestro variables which are expanded before the script is passed to the shell.
+The shell scripts invoked by these macros (which appear below) may be of some use even to those who don't use Keyboard Maestro. They are intended to be POSIX-compatible and as portable as possible, except where macOS's `mdfind` is used in place of `find`. Variables beginning with `$KMVAR_` are Keyboard Maestro variables which are expanded before the script is passed to the shell.
 
 ## Page Contents
 
@@ -21,8 +21,8 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 | [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.02 | 2020-07-17 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
-| [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.02 | 2020-07-22 |
-| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.03 | 2020-07-09 |
+| [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.03 | 2020-07-22 |
+| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.04 | 2020-07-22 |
 
 ## Assumptions
 
@@ -81,7 +81,7 @@ These are general to most or all macros. Points specific to individual macros ar
 	birthtime=$(date -j -f "%b  %d %T %Y" "$(stat -f "%SB" "$f")" +"%Y%m%d%H%M")
 	```
 
-*	Better account for special characters such as square brackets in find-replace strings.
+*	Better account for special characters such as double quotes and square brackets in find-replace strings.
 
 # Macros
 
@@ -250,7 +250,7 @@ Double-clicking the spreadsheet's UID and triggering the macro will open the spr
 ### Invoked Shell Script
 
 ```sh
-open "$(find "$KMVAR_Instance_Documents_Directory" -name "*$KMVAR_Instance_Document_UID*" | head -n1)"
+open "$(mdfind "kMDItemFSName=*$KMVAR_Instance_Document_UID*" | head -n1)"
 ```
 
 ### Areas for Improvement
@@ -261,6 +261,7 @@ open "$(find "$KMVAR_Instance_Documents_Directory" -name "*$KMVAR_Instance_Docum
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.03 | 2020-07-22 | Use `mdfind` in place of `find` |
 | 1.02 | 2020-07-22 | Allow folders as well as files to be opened |
 | 1.01 | 2020-07-17 | Use "Delete Past Clipboard" |
 | 1.00 | 2020-07-07 | Initial commit |
@@ -315,7 +316,9 @@ cd "$KMVAR_Instance_Notes_Directory"
 backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
 mkdir "$backup_directory"
 
-f=$(find . -name "$KMVAR_Instance_Old_Title.*")
+f=$(mdfind "kMDItemFSName=$KMVAR_Instance_Old_Title.*" -onlyin .)
+# Alternatively, using `find`:
+# f=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
 # Back up the note to be renamed.
 cp -p "$f" "$backup_directory/$f"
@@ -349,6 +352,7 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.04 | 2020-07-22 | Use `mdfind` in place of `find` |
 | 1.03 | 2020-07-09 | Add escapes to `grep` calls |
 | 1.02 | 2020-07-08 | Update modification times by default |
 | 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
