@@ -4,7 +4,7 @@ This is a repository for [Keyboard Maestro](https://www.keyboardmaestro.com/) ma
 
 The macros are intended as companions to note-taking and -management software such as [nvUltra](https://nvultra.com/) and [The Archive](https://zettelkasten.de/the-archive/). Other such macros are listed in [this Zettelkasten.de forum thread](https://forum.zettelkasten.de/discussion/213/the-archive-keyboard-maestro-alfred-macros).
 
-The shell scripts invoked by these macros (which appear below) may be of some use even to those who don't use Keyboard Maestro. They are intended to be POSIX-compatible and as portable as possible, except where macOS's `mdfind` is used in place of `find`. Variables beginning with `$KMVAR_` are Keyboard Maestro variables which are expanded before the script is passed to the shell.
+The shell scripts invoked by these macros (which appear below) may be of some use even to those who don't use Keyboard Maestro. They are intended to be POSIX-compatible and as portable as possible, except where [macOS's `mdfind` is used in place of `find`](https://forum.zettelkasten.de/discussion/comment/7203/#Comment_7203). Variables beginning with `$KMVAR_` are Keyboard Maestro variables which are expanded before the script is passed to the shell.
 
 ## Page Contents
 
