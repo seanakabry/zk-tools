@@ -21,7 +21,7 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 | [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.02 | 2020-07-17 |
 | [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
-| [Open File by UID](#open-file-by-uid) | Opens a file outside the Zettelkasten using a UID. | 1.01 | 2020-07-17 |
+| [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.02 | 2020-07-22 |
 | [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.03 | 2020-07-09 |
 
 ## Assumptions
@@ -232,9 +232,9 @@ done
 | 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
 
-## Open File by UID
+## Open File or Folder by UID
 
-Opens the file in a specified directory with a filename containing the currently selected text. The intended use case is a UID scheme for documents outside the Zettelkasten; as such, the macro expects that only one file will match the search string.
+Opens the file or folder in a specified directory with a name containing the currently selected text. The intended use case is a UID scheme for documents and folders outside the Zettelkasten; as such, the macro expects that only one file or folder will match the search string.
 
 As an example, a daily/diary note might contain a line like:
 
@@ -244,13 +244,13 @@ Double-clicking the spreadsheet's UID and triggering the macro will open the spr
 
 ### Links
 
-*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Open%20File%20by%20UID.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Open%20File%20or%20Folder%20by%20UID.kmmacros) (right click and 'save link/target')
 *	[Zettelkasten.de forum post for this macro](https://forum.zettelkasten.de/discussion/1235/km-macro-open-a-file-outside-the-zettelkasten-identified-by-a-uid)
 
 ### Invoked Shell Script
 
 ```sh
-open "$(find "$KMVAR_Instance_Documents_Directory" -type f -name "*$KMVAR_Instance_Document_UID*" | head -n1)"
+open "$(find "$KMVAR_Instance_Documents_Directory" -name "*$KMVAR_Instance_Document_UID*" | head -n1)"
 ```
 
 ### Areas for Improvement
@@ -261,6 +261,7 @@ open "$(find "$KMVAR_Instance_Documents_Directory" -type f -name "*$KMVAR_Instan
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.02 | 2020-07-22 | Allow folders as well as files to be opened |
 | 1.01 | 2020-07-17 | Use "Delete Past Clipboard" |
 | 1.00 | 2020-07-07 | Initial commit |
 
