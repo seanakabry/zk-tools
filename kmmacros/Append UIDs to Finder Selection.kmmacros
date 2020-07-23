@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb246IDEuMDNcClVS
+						Y2YyIFZlcnNpb246IDEuMDRcClVS
 						STogaHR0cHM6Ly9naXRodWIuY29t
 						L3NlYW5ha2FicnkvemstdG9vbHN9
 						AQAAACMAAAABAAAABwAAAFRYVC5y
-						dGYQAAAARiEZX7YBAAAAAAAAAAAA
+						dGYQAAAAM00ZX7YBAAAAAAAAAAAA
 						AA==
 						</data>
 						<key>Title</key>
@@ -156,12 +156,12 @@
 								<string>Nothing</string>
 								<key>Text</key>
 								<string>if [[ -d "$KMVAR_Instance_Files" ]]; then
-	filepath="${KMVAR_Instance_Files%/}"
-	mv "$KMVAR_Instance_Files" "$filepath ($KMVAR_Last_UID)/"
+	f="${KMVAR_Instance_Files%/}"
+	mv "$KMVAR_Instance_Files" "$f ($KMVAR_Last_UID)/"
 else
 	extension="${KMVAR_Instance_Files##*.}"
-	filepath="${KMVAR_Instance_Files%.*}"
-	mv "$KMVAR_Instance_Files" "$filepath ($KMVAR_Last_UID).$extension"
+	f="${KMVAR_Instance_Files%.*}"
+	mv "$KMVAR_Instance_Files" "$f ($KMVAR_Last_UID).$extension"
 fi</string>
 								<key>TimeOutAbortsMacro</key>
 								<true/>
@@ -196,7 +196,7 @@ fi</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617175646.07012296</real>
+				<real>617186482.42183805</real>
 				<key>Name</key>
 				<string>Append UIDs to Finder Selection</string>
 				<key>Triggers</key>

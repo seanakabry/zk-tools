@@ -16,13 +16,13 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 
 | Macro | Function | v. | Updated |
 | :---- | -------- | :- | :------------ |
-| [Append UIDs to Finder Selection](#append-uids-to-finder-selection) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files and/or folders selected in Finder. | 1.03 | 2020-07-23 |
+| [Append UIDs to Finder Selection](#append-uids-to-finder-selection) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files and/or folders selected in Finder. | 1.04 | 2020-07-23 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
 | [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.02 | 2020-07-17 |
-| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.02 | 2020-07-08 |
+| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.03 | 2020-07-23 |
 | [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.04 | 2020-07-23 |
-| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.05 | 2020-07-23 |
+| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.06 | 2020-07-23 |
 
 ## Assumptions
 
@@ -99,12 +99,12 @@ This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a nu
 
 ```sh
 if [[ -d "$KMVAR_Instance_Files" ]]; then
-	filepath="${KMVAR_Instance_Files%/}"
-	mv "$KMVAR_Instance_Files" "$filepath ($KMVAR_Last_UID)/"
+	f="${KMVAR_Instance_Files%/}"
+	mv "$KMVAR_Instance_Files" "$f ($KMVAR_Last_UID)/"
 else
 	extension="${KMVAR_Instance_Files##*.}"
-	filepath="${KMVAR_Instance_Files%.*}"
-	mv "$KMVAR_Instance_Files" "$filepath ($KMVAR_Last_UID).$extension"
+	f="${KMVAR_Instance_Files%.*}"
+	mv "$KMVAR_Instance_Files" "$f ($KMVAR_Last_UID).$extension"
 fi
 ```
 
@@ -112,6 +112,7 @@ fi
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.04 | 2020-07-23 | Use consistent variable names |
 | 1.03 | 2020-07-23 | Allow UIDs to be appended to folders as well as files |
 | 1.02 | 2020-07-14 | Save only most recent UID to `Last UID` |
 | 1.01 | 2020-07-13 | Remove unnecessary braces |
@@ -206,14 +207,14 @@ To leave the modification times of edited files as they were, uncomment the rele
 cd "$KMVAR_Instance_Notes_Directory"
 
 # Create a backup directory.
-backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Replace \"$KMVAR_Instance_Find\" with \"$KMVAR_Instance_Replace\""
-mkdir "$backup_directory"
+backups="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Replace \"$KMVAR_Instance_Find\" with \"$KMVAR_Instance_Replace\""
+mkdir "$backups"
 
 # Identify notes containing the string to be replaced.
 grep -rl "$KMVAR_Instance_Find" . | while read -r f ; do
 
 	# Back up the notes.
-	cp -p "$f" "$backup_directory/$f"
+	cp -p "$f" "$backups/$f"
 
 	# Perform the replacement.
 	# Uncomment the commented lines in the following block if you prefer that the modification times of notes containing wikilinks are *not* updated. These lines save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
@@ -234,6 +235,7 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.03 | 2020-07-23 | Use consistent variable names |
 | 1.02 | 2020-07-08 | Update modification times by default |
 | 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
@@ -320,18 +322,20 @@ Rename the note and update `[[wikilinks]]` to it, taking backups:
 cd "$KMVAR_Instance_Notes_Directory"
 
 # Create a backup directory.
-backup_directory="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
-mkdir "$backup_directory"
+backups="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Rename \"$KMVAR_Instance_Old_Title\" to \"$KMVAR_Instance_New_Title\""
+mkdir "$backups"
 
-f=$(mdfind 'kMDItemFSName=="'"$KMVAR_Instance_Old_Title.*"'"' -onlyin .)
+# Identify the file to be renamed.
+r=$(mdfind 'kMDItemFSName=="'"$KMVAR_Instance_Old_Title.*"'"' -onlyin .)
 # Alternatively, using `find`:
-# f=$(find . -name "$KMVAR_Instance_Old_Title.*")
+# r=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
 # Back up the note to be renamed.
-cp -p "$f" "$backup_directory/$f"
+r_filename=${r##*/}
+cp -p "$r" "$backups/$r_filename"
 
-touch "$f"
-mv "$f" "${f//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
+touch "$r"
+mv "$r" "${r//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
 
 # Identify notes containing wikilinks to the renamed note.
 grep -rl "\[\[$KMVAR_Instance_Old_Title\]\]" . | while read -r f ; do
@@ -340,8 +344,8 @@ grep -rl "\[\[$KMVAR_Instance_Old_Title\]\]" . | while read -r f ; do
 	# Exclude the just-renamed note, which may include a wikilink to itself (such as in a YAML header).
 	f_basename=${f##*/}
 	f_basename=${f_basename%.*}
-	if [ "$f_basename" != "$KMVAR_Instance_New_Title" ]; then
-		cp -p "$f" "$backup_directory/$f"
+	if [[ "$f_basename" != "$KMVAR_Instance_New_Title" ]]; then
+		cp -p "$f" "$backups/$f"
 	fi
 
 	# Update the wikilinks.
@@ -359,6 +363,7 @@ done
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.06 | 2020-07-23 | Fix syntax in backups file path; clean up variable names |
 | 1.05 | 2020-07-23 | Fix quoting to account for spaces in KM variables |
 | 1.04 | 2020-07-22 | Use `mdfind` in place of `find` |
 | 1.03 | 2020-07-09 | Add escapes to `grep` calls |
