@@ -16,7 +16,7 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 
 | Macro | Function | v. | Updated |
 | :---- | -------- | :- | :------------ |
-| [Append UIDs to Filenames](#append-uids-to-filenames) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder. | 1.02 | 2020-07-14 |
+| [Append UIDs to Finder Selection](#append-uids-to-finder-selection) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files and/or folders selected in Finder. | 1.03 | 2020-07-23 |
 | [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
 | [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
 | [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.02 | 2020-07-17 |
@@ -85,28 +85,34 @@ These are general to most or all macros. Points specific to individual macros ar
 
 # Macros
 
-## Append UIDs to Filenames
+## Append UIDs to Finder Selection
 
-Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files selected in Finder.
+Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files and/or folders selected in Finder.
 
 This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a number of other macros on this page so that UIDs assigned in rapid succession (more than one in a given clock minute) don't clash.
 
 ### Links
 
-*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Append%20UIDs%20to%20Filenames.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Append%20UIDs%20to%20Finder%20Selection.kmmacros) (right click and 'save link/target')
 
 ### Invoked Shell Script
 
 ```sh
-extension="${KMVAR_Instance_Files##*.}"
-basename="${KMVAR_Instance_Files%.*}"
-mv "$KMVAR_Instance_Files" "${basename} ($KMVAR_Instance_UID_to_Assign).${extension}"
+if [[ -d "$KMVAR_Instance_Files" ]]; then
+	filepath="${KMVAR_Instance_Files%/}"
+	mv "$KMVAR_Instance_Files" "$filepath ($KMVAR_Last_UID)/"
+else
+	extension="${KMVAR_Instance_Files##*.}"
+	filepath="${KMVAR_Instance_Files%.*}"
+	mv "$KMVAR_Instance_Files" "$filepath ($KMVAR_Last_UID).$extension"
+fi
 ```
 
 ### Changelog
 
 | Version | Date | Changes |
 | ------- | ---- | ------- |
+| 1.03 | 2020-07-23 | Allow UIDs to be appended to folders as well as files |
 | 1.02 | 2020-07-14 | Save only most recent UID to `Last UID` |
 | 1.01 | 2020-07-13 | Remove unnecessary braces |
 | 1.00 | 2020-07-08 | Initial commit |
