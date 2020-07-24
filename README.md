@@ -10,13 +10,13 @@ This repository may be most useful as a reference for building your own macros a
 
 * 	Your notes lie flat in a single directory (no subdirectories).
 
-*	Your notes are `[[wikilinked]]` using full basenames rather than explicit UIDs.[^1] That is, `[[Another Note]]` links to `Another Note.txt`, without regard to the file extension.
+*	Your notes are `[[wikilinked]]` using full basenames (filenames without extensions) rather than explicit UIDs. That is, `[[Another Note]]` links to `Another Note.txt`, without regard to the file extension.
 
-	A number of the macros assume that explicit UIDs are used to refer to files *outside* the notes directory.
-
-[^1]: An explicit UID (unique identifier) is a part of the filename of a note which follows a consistent syntax (usually a timestamp prefix like `202007011200`) and is supposed never to change, like a primary key for a record in a database. The wikilink `[[202007011200]]` would point to `202007011200 Another Note.txt`, and continue to point to the same note even if that note is renamed `202007011200 Edited Note.txt`. This robustness is one of the chief benefits of using explicit UIDs. Obvious drawbacks include the interruption of the flow of text with a long, usually non-semantic string of characters, and the difficulty of specifying the UID of a note one has in mind (made trivially easy by a wikilink auto-completion macro, such as by Zettelkasten.de forum users [kaidoh](https://forum.zettelkasten.de/discussion/176/quick-insertion-of-links-to-other-zettels-with-type-ahead-search-using-keyboard-maestro) or [Will](https://forum.zettelkasten.de/discussion/comment/2516/#Comment_2516)).
+	In the context of plaint text wikis and Zettelkästen, an explicit UID (unique identifier) is a part of the filename of a note which follows a consistent syntax (usually a timestamp prefix like `202007011200`) and is supposed never to change, like a primary key for a record in a database. The wikilink `[[202007011200]]` would point to `202007011200 Another Note.txt`, and continue to point to the same note even if that note is renamed `202007011200 Edited Note.txt`. This robustness is one of the chief benefits of using explicit UIDs. Drawbacks include the interruption of the flow of text with a long, usually non-semantic string of characters, and the fuss of fetching the UIDs of notes in order to link to them (made trivially easy by a wikilink auto-completion macro, such as by Zettelkasten.de forum users [kaidoh](https://forum.zettelkasten.de/discussion/176/quick-insertion-of-links-to-other-zettels-with-type-ahead-search-using-keyboard-maestro) or [Will](https://forum.zettelkasten.de/discussion/comment/2516/#Comment_2516)).
 
 	The Archive [recognises UIDs](https://zettelkasten.de/the-archive/help/#how-do-i-create-links-between-notes). nvUltra [does not](https://twitter.com/nvUltraApp/status/1268882547066515458).
+
+	A number of the macros in this repository assume that explicit UIDs are used to refer to files *outside* the notes directory.
 
 *	As above, the shell scripts invoked by the macros are intended to be as portable as possible, but the default context is assumed to be macOS.
 
