@@ -15,14 +15,14 @@ The shell scripts invoked by these macros (which appear below) may be of some us
 	* 	[Areas for Improvement](#areas-for-improvement)
 
 | Macro | Function | v. | Updated |
-| :---- | -------- | :- | :------------ |
-| [Append UIDs to Finder Selection](#append-uids-to-finder-selection) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files and/or folders selected in Finder. | 1.04 | 2020-07-23 |
-| [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.01 | 2020-07-07 |
-| [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.00 | 2020-07-14 |
-| [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.02 | 2020-07-17 |
-| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.03 | 2020-07-23 |
-| [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.04 | 2020-07-23 |
-| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.06 | 2020-07-23 |
+| :---- | :------- | :- | :------ |
+| [Append UIDs to Finder Selection](#append-uids-to-finder-selection) | Appends UIDs in the pattern ` (YYYYMMddHHmm)` to the names of the files and/or folders selected in Finder. | 1.05 | 2020-07-24 |
+| [Back Up Notes](#back-up-notes) | Copies all notes to a timestamped backup directory. | 1.02 | 2020-07-24 |
+| [Clip Highlighted Text in Firefox](#clip-highlighted-text-in-firefox) | Copies the currently selected text in Firefox to a text file, with metadata, optionally with an annotation. | 1.01 | 2020-07-24 |
+| [Insert UID](#insert-uid) | Inserts a UID in the pattern `YYYYMMddHHmm` at the cursor. | 1.03 | 2020-07-24 |
+| [Find and Replace](#find-and-replace) | Performs a find and replace operation on the content but not the titles of all notes. | 1.04 | 2020-07-24 |
+| [Open File or Folder by UID](#open-file-or-folder-by-uid) | Opens a file or folder outside the Zettelkasten using a UID. | 1.05 | 2020-07-24 |
+| [Rename and Update Wikilinks](#rename-and-update-wikilinks) | Renames a specified note and updates `[[wikilinks]]` to it. | 1.07 | 2020-07-24 |
 
 ## Assumptions
 
@@ -93,7 +93,7 @@ This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a nu
 
 ### Links
 
-*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Append%20UIDs%20to%20Finder%20Selection.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/append-uid.kmmacros) (right click and 'save link/target')
 
 ### Invoked Shell Script
 
@@ -111,7 +111,8 @@ fi
 ### Changelog
 
 | Version | Date | Changes |
-| ------- | ---- | ------- |
+| :------ | :--- | :------ |
+| 1.05 | 2020-07-24 | Remove default triggers; use simpler macro names |
 | 1.04 | 2020-07-23 | Use consistent variable names |
 | 1.03 | 2020-07-23 | Allow UIDs to be appended to folders as well as files |
 | 1.02 | 2020-07-14 | Save only most recent UID to `Last UID` |
@@ -124,7 +125,7 @@ Copies all notes to a timestamped backup directory.
 
 ### Links
 
-*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Back%20Up.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/back-up.kmmacros) (right click and 'save link/target')
 
 ### Invoked Shell Script
 
@@ -135,7 +136,8 @@ cp -a "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(dat
 ### Changelog
 
 | Version | Date | Changes |
-| ------- | ---- | ------- |
+| :------ | :--- | :------ |
+| 1.02 | 2020-07-24 | Remove default triggers; use simpler macro names |
 | 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
 | 1.00 | 2020-07-02 | Initial commit |
 
@@ -150,8 +152,8 @@ Keyboard Maestro has [more convenient ways](https://wiki.keyboardmaestro.com/Tok
 ### Links
 
 *	Direct link to `.kmmacros` (right click and 'save link/target')
-	*	[clip only](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Clip%20Highlighted%20Text%20in%20Firefox.kmmacros)
-	*	[clip and annotate](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Clip%20Highlighted%20Text%20in%20Firefox,%20with%20an%20Annotation.kmmacros)
+	*	[clip only](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/clip.kmmacros)
+	*	[clip and annotate](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/clip-annotate.kmmacros)
 
 ### Steps in the Macro
 
@@ -168,7 +170,8 @@ Keyboard Maestro has [more convenient ways](https://wiki.keyboardmaestro.com/Tok
 ### Changelog
 
 | Version | Date | Changes |
-| ------- | ---- | ------- |
+| :------ | :--- | :------ |
+| 1.01 | 2020-07-24 | Remove default triggers; use simpler macro names |
 | 1.00 | 2020-07-14 | Initial commit |
 
 ## Insert UID
@@ -179,12 +182,13 @@ This macro uses a global Keyboard Maestro variable, `Last UID`, shared with a nu
 
 ### Links
 
-*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Insert%20UID.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/uid.kmmacros) (right click and 'save link/target')
 
 ### Changelog
 
 | Version | Date | Changes |
-| ------- | ---- | ------- |
+| :------ | :--- | :------ |
+| 1.03 | 2020-07-24 | Remove default triggers; use simpler macro names |
 | 1.02 | 2020-07-17 | Use "Delete Past Clipboard" |
 | 1.01 | 2020-07-14 | Save only most recent UID to `Last UID` |
 | 1.00 | 2020-07-08 | Initial commit |
@@ -198,8 +202,8 @@ To leave the modification times of edited files as they were, uncomment the rele
 ### Links
 
 *	Direct links to `.kmmacros`: (right click and 'save link/target')
-	* [with backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Find%20and%20Replace%2C%20with%20Backups.kmmacros)
-	* [without backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Find%20and%20Replace%2C%20without%20Backups.kmmacros)
+	* [with backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/find-replace.kmmacros)
+	* [without backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/find-replace-nb.kmmacros)
 
 ### Invoked Shell Script
 
@@ -234,7 +238,8 @@ done
 ### Changelog
 
 | Version | Date | Changes |
-| ------- | ---- | ------- |
+| :------ | :--- | :------ |
+| 1.04 | 2020-07-24 | Remove default triggers; use simpler macro names |
 | 1.03 | 2020-07-23 | Use consistent variable names |
 | 1.02 | 2020-07-08 | Update modification times by default |
 | 1.01 | 2020-07-07 | Use [instance](https://wiki.keyboardmaestro.com/manual/Variables#Instance_Variables_v8) rather than global variables |
@@ -252,7 +257,7 @@ Double-clicking the spreadsheet's UID and triggering the macro will open the spr
 
 ### Links
 
-*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Open%20File%20or%20Folder%20by%20UID.kmmacros) (right click and 'save link/target')
+*	[Direct link to `.kmmacros`](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/open.kmmacros) (right click and 'save link/target')
 *	[Zettelkasten.de forum post for this macro](https://forum.zettelkasten.de/discussion/1235/km-macro-open-a-file-outside-the-zettelkasten-identified-by-a-uid)
 
 ### Invoked Shell Script
@@ -268,7 +273,8 @@ open "$(mdfind 'kMDItemFSName=="'"*$KMVAR_Instance_UID*"'"' | head -n1)"
 ### Changelog
 
 | Version | Date | Changes |
-| ------- | ---- | ------- |
+| :------ | :--- | :------ |
+| 1.05 | 2020-07-24 | Remove default triggers; use simpler macro names |
 | 1.04 | 2020-07-23 | Fix quoting to account for spaces in KM variables |
 | 1.03 | 2020-07-22 | Use `mdfind` in place of `find` |
 | 1.02 | 2020-07-22 | Allow folders as well as files to be opened |
@@ -288,8 +294,8 @@ To leave the modification times of edited files as they were, uncomment the rele
 ### Links
 
 *	Direct links to `.kmmacros`: (right click and 'save link/target')
-	*	[with backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Rename%20and%20Update%20Wikilinks%2C%20with%20Backups.kmmacros)
-	*	[without backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/Rename%20and%20Update%20Wikilinks%2C%20without%20Backups.kmmacros)
+	*	[with backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/rename.kmmacros)
+	*	[without backups](https://raw.githubusercontent.com/seanakabry/zk-tools/master/kmmacros/rename-nb.kmmacros)
 *	[Zettelkasten.de forum post for this macro](https://forum.zettelkasten.de/discussion/1230/km-macro-rename-note-and-update-wikilinks-to-it/)
 
 ### Steps in the Macro
@@ -362,7 +368,8 @@ done
 ### Changelog
 
 | Version | Date | Changes |
-| ------- | ---- | ------- |
+| :------ | :--- | :------ |
+| 1.07 | 2020-07-24 | Remove default triggers; use simpler macro names |
 | 1.06 | 2020-07-23 | Fix syntax in backups file path; clean up variable names |
 | 1.05 | 2020-07-23 | Fix quoting to account for spaces in KM variables |
 | 1.04 | 2020-07-22 | Use `mdfind` in place of `find` |

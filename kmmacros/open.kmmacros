@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wNFwKaHR0
+						Y2YyIFZlcnNpb24gMS4wNVwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						FwIYX7YBAAAAAAAAAAAAAA==
+						284YX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -104,22 +104,11 @@
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617154121.802549</real>
+				<real>617240913.77154601</real>
 				<key>Name</key>
-				<string>Open File or Folder by UID</string>
+				<string>Open file or folder by UID</string>
 				<key>Triggers</key>
-				<array>
-					<dict>
-						<key>FireType</key>
-						<string>Pressed</string>
-						<key>KeyCode</key>
-						<integer>2</integer>
-						<key>MacroTriggerType</key>
-						<string>HotKey</string>
-						<key>Modifiers</key>
-						<integer>4608</integer>
-					</dict>
-				</array>
+				<array/>
 				<key>UID</key>
 				<string>4C08A3E3-CE69-4DAE-BB97-20AC67B520F3</string>
 			</dict>

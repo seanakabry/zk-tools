@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wM1wKaHR0
+						Y2YyIFZlcnNpb24gMS4wNFwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						cEsGX7YBAAAAAAAAAAAAAA==
+						FwIYX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -55,16 +55,6 @@
 						<string>/Volumes/Notebooks/Private/Notes</string>
 						<key>Variable</key>
 						<string>Instance Notes Directory</string>
-					</dict>
-					<dict>
-						<key>ActionColor</key>
-						<string>Yellow</string>
-						<key>MacroActionType</key>
-						<string>SetVariableToText</string>
-						<key>Text</key>
-						<string>/Volumes/Notebooks/Private/Backups</string>
-						<key>Variable</key>
-						<string>Instance Backup Directory</string>
 					</dict>
 					<dict>
 						<key>Buttons</key>
@@ -146,15 +136,8 @@
 						<key>Text</key>
 						<string>cd "$KMVAR_Instance_Notes_Directory"
 
-# Create a backup directory.
-backups="$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Replace \"$KMVAR_Instance_Find\" with \"$KMVAR_Instance_Replace\""
-mkdir "$backups"
-
 # Identify notes containing the string to be replaced.
 grep -rl "$KMVAR_Instance_Find" . | while read -r f ; do
-
-	# Back up the notes.
-	cp -p "$f" "$backups/$f"
 
 	# Perform the replacement.
 	# Uncomment the commented lines in the following block if you prefer that the modification times of notes containing wikilinks are *not* updated. These lines save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
@@ -176,28 +159,17 @@ done</string>
 					</dict>
 				</array>
 				<key>CreationDate</key>
-				<real>615362777.82893097</real>
+				<real>615363897.25094998</real>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617186345.390769</real>
+				<real>617240810.696962</real>
 				<key>Name</key>
-				<string>Find and Replace, with Backups</string>
+				<string>Find and replace, without backups</string>
 				<key>Triggers</key>
-				<array>
-					<dict>
-						<key>FireType</key>
-						<string>Pressed</string>
-						<key>KeyCode</key>
-						<integer>3</integer>
-						<key>MacroTriggerType</key>
-						<string>HotKey</string>
-						<key>Modifiers</key>
-						<integer>4608</integer>
-					</dict>
-				</array>
+				<array/>
 				<key>UID</key>
-				<string>A695E83F-063D-4CDA-9CBC-5DEA0196261D</string>
+				<string>75F1793E-86E9-4D5A-A7B1-D8E77CDE44FC</string>
 			</dict>
 		</array>
 		<key>Name</key>

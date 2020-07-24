@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wMFwKaHR0
+						Y2YyIFZlcnNpb24gMS4wMVwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						gDQEX7YBAAAAAAAAAAAAAA==
+						wzQEX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -392,22 +392,11 @@ Tags: #annotated
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>616414401.77602303</real>
+				<real>617240709.07905698</real>
 				<key>Name</key>
-				<string>Clip Highlighted Text in Firefox, with an Annotation</string>
+				<string>Clip highlighted text in Firefox, with an annotation</string>
 				<key>Triggers</key>
-				<array>
-					<dict>
-						<key>FireType</key>
-						<string>Pressed</string>
-						<key>KeyCode</key>
-						<integer>45</integer>
-						<key>MacroTriggerType</key>
-						<string>HotKey</string>
-						<key>Modifiers</key>
-						<integer>4608</integer>
-					</dict>
-				</array>
+				<array/>
 				<key>UID</key>
 				<string>0481A6E9-75AF-499A-9D0A-BA782CA5A1C2</string>
 			</dict>

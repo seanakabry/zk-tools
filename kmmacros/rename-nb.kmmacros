@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wMVwKaHR0
+						Y2YyIFZlcnNpb24gMS4wN1wKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						wzQEX7YBAAAAAAAAAAAAAA==
+						eBoaX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -57,36 +57,53 @@
 						<string>Instance Notes Directory</string>
 					</dict>
 					<dict>
-						<key>Buttons</key>
-						<array>
-							<dict>
-								<key>Button</key>
-								<string>OK</string>
-							</dict>
-							<dict>
-								<key>Button</key>
-								<string>Cancel</string>
-								<key>Cancel</key>
-								<true/>
-							</dict>
-						</array>
+						<key>DisplayKind</key>
+						<string>Variable</string>
+						<key>HonourFailureSettings</key>
+						<true/>
+						<key>IncludeStdErr</key>
+						<true/>
 						<key>MacroActionType</key>
-						<string>PromptForUserInput</string>
-						<key>Prompt</key>
-						<string>String to be replaced</string>
+						<string>ExecuteShellScript</string>
+						<key>NotifyOnFailure</key>
+						<false/>
+						<key>Path</key>
+						<string></string>
+						<key>Source</key>
+						<string>Nothing</string>
+						<key>StopOnFailure</key>
+						<false/>
+						<key>Text</key>
+						<string>cd "$KMVAR_Instance_Notes_Directory"
+ls -t | sed -e 's/.[^.]*$//'</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
-						<key>Title</key>
-						<string>Find</string>
-						<key>Variables</key>
-						<array>
-							<dict>
-								<key>Default</key>
-								<string></string>
-								<key>Variable</key>
-								<string>Instance Find</string>
-							</dict>
-						</array>
+						<key>TrimResults</key>
+						<true/>
+						<key>TrimResultsNew</key>
+						<true/>
+						<key>UseText</key>
+						<true/>
+						<key>Variable</key>
+						<string>Instance All Notes</string>
+					</dict>
+					<dict>
+						<key>Destination</key>
+						<string>Variable</string>
+						<key>DestinationVariable</key>
+						<string>Instance Old Title</string>
+						<key>MacroActionType</key>
+						<string>PromptWithList</string>
+						<key>PromptUID</key>
+						<string>DB394C14-EC71-4A67-8378-5735A4C0771B</string>
+						<key>Source</key>
+						<string>Variable</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>Variable</key>
+						<string>Instance All Notes</string>
+						<key>WindowTitle</key>
+						<string>Note to be renamed</string>
 					</dict>
 					<dict>
 						<key>Buttons</key>
@@ -105,24 +122,24 @@
 						<key>MacroActionType</key>
 						<string>PromptForUserInput</string>
 						<key>Prompt</key>
-						<string>String to replace with</string>
+						<string>[[Wikilinks]] to the renamed note will be updated.</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 						<key>Title</key>
-						<string>Replace</string>
+						<string>New Title</string>
 						<key>Variables</key>
 						<array>
 							<dict>
 								<key>Default</key>
-								<string></string>
+								<string>%Variable%Instance Old Title%</string>
 								<key>Variable</key>
-								<string>Instance Replace</string>
+								<string>Instance New Title</string>
 							</dict>
 						</array>
 					</dict>
 					<dict>
 						<key>DisplayKind</key>
-						<string>Window</string>
+						<string>None</string>
 						<key>HonourFailureSettings</key>
 						<true/>
 						<key>IncludeStdErr</key>
@@ -136,14 +153,22 @@
 						<key>Text</key>
 						<string>cd "$KMVAR_Instance_Notes_Directory"
 
-# Identify notes containing the string to be replaced.
-grep -rl "$KMVAR_Instance_Find" . | while read -r f ; do
+# Identify the file to be renamed.
+r=$(mdfind 'kMDItemFSName=="'"$KMVAR_Instance_Old_Title.*"'"' -onlyin .)
+# Alternatively, using `find`:
+# r=$(find . -name "$KMVAR_Instance_Old_Title.*")
 
-	# Perform the replacement.
+touch "$r"
+mv "$r" "${r//$KMVAR_Instance_Old_Title/$KMVAR_Instance_New_Title}"
+
+# Identify notes containing wikilinks to the renamed note.
+grep -rl "\[\[$KMVAR_Instance_Old_Title\]\]" . | while read -r f ; do
+
+	# Update the wikilinks.
 	# Uncomment the commented lines in the following block if you prefer that the modification times of notes containing wikilinks are *not* updated. These lines save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
 	# touch "$f.temp"
 	# touch -r "$f" "$f.temp"
-	sed -i "" "s|$KMVAR_Instance_Find|$KMVAR_Instance_Replace|g" "$f"
+	sed -i "" "s|\[\[$KMVAR_Instance_Old_Title\]\]|\[\[$KMVAR_Instance_New_Title\]\]|g" "$f"
 	# touch -r "$f.temp" "$f"
 	# rm "$f.temp"
 
@@ -159,28 +184,17 @@ done</string>
 					</dict>
 				</array>
 				<key>CreationDate</key>
-				<real>615363897.25094998</real>
+				<real>615345378.10065496</real>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>615877261.75385201</real>
+				<real>617240892.80713499</real>
 				<key>Name</key>
-				<string>Find and Replace, without Backups</string>
+				<string>Rename note and update [[wikilinks]] to it, without backups</string>
 				<key>Triggers</key>
-				<array>
-					<dict>
-						<key>FireType</key>
-						<string>Pressed</string>
-						<key>KeyCode</key>
-						<integer>3</integer>
-						<key>MacroTriggerType</key>
-						<string>HotKey</string>
-						<key>Modifiers</key>
-						<integer>4608</integer>
-					</dict>
-				</array>
+				<array/>
 				<key>UID</key>
-				<string>75F1793E-86E9-4D5A-A7B1-D8E77CDE44FC</string>
+				<string>B2107F5E-BF6B-4A1E-85B7-CA4E28B0E094</string>
 			</dict>
 		</array>
 		<key>Name</key>
