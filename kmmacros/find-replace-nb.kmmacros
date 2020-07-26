@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wNVwKaHR0
+						Y2YyIFZlcnNpb24gMS4wNlwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						284YX7YBAAAAAAAAAAAAAA==
+						cEQdX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -143,7 +143,9 @@ grep -rl "$KMVAR_Instance_Find" . | while read -r f ; do
 	# Uncomment the commented lines in the following block if you prefer that the modification times of notes containing wikilinks are *not* updated. These lines save the modification timestamp against an empty temporary file. An alternative method would be to use `stat` to save the modification time to a variable.
 	# touch "$f.temp"
 	# touch -r "$f" "$f.temp"
-	sed -i "" "s|$KMVAR_Instance_Find|$KMVAR_Instance_Replace|g" "$f"
+	find_escaped=$(sed 's/[^^]/[&amp;]/g; s/\^/\\^/g' &lt;&lt;&lt;"$KMVAR_Instance_Find")
+	replace_escaped=$(sed 's/[&amp;/\]/\\&amp;/g' &lt;&lt;&lt;"$KMVAR_Instance_Replace")
+	sed -i "" "s/$find_escaped/$replace_escaped/g" "$f"
 	# touch -r "$f.temp" "$f"
 	# rm "$f.temp"
 
@@ -165,7 +167,7 @@ done</string>
 						<key>Subtitle</key>
 						<string></string>
 						<key>Text</key>
-						<string>Instances of “%Variable%Instance Find%” were replaced with “%Variable%Instance Replace%.”</string>
+						<string>Instances of “%Variable%Instance Find%” were replaced with “%Variable%Instance Replace%”.</string>
 						<key>Title</key>
 						<string>String Replaced</string>
 					</dict>
@@ -175,7 +177,7 @@ done</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617442388.99466503</real>
+				<real>617446383.64304602</real>
 				<key>Name</key>
 				<string>Find and replace, without backups</string>
 				<key>Triggers</key>
