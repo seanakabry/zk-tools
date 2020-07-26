@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wNFwKaHR0
+						Y2YyIFZlcnNpb24gMS4wNVwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						FwIYX7YBAAAAAAAAAAAAAA==
+						284YX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -174,13 +174,25 @@ done</string>
 						<key>UseText</key>
 						<true/>
 					</dict>
+					<dict>
+						<key>MacroActionType</key>
+						<string>Notification</string>
+						<key>SoundName</key>
+						<string></string>
+						<key>Subtitle</key>
+						<string></string>
+						<key>Text</key>
+						<string>Instances of “%Variable%Instance Find%” were replaced with “%Variable%Instance Replace%.”</string>
+						<key>Title</key>
+						<string>String Replaced</string>
+					</dict>
 				</array>
 				<key>CreationDate</key>
 				<real>615362777.82893097</real>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617240787.68902099</real>
+				<real>617442367.419577</real>
 				<key>Name</key>
 				<string>Find and replace, with backups</string>
 				<key>Triggers</key>

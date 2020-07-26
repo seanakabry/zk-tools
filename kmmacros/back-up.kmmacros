@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb246IDEuMDJcClVS
+						Y2YyIFZlcnNpb246IDEuMDNcClVS
 						STogaHR0cHM6Ly9naXRodWIuY29t
 						L3NlYW5ha2FicnkvemstdG9vbHN9
 						AQAAACMAAAABAAAABwAAAFRYVC5y
-						dGYQAAAAAHUNX7YBAAAAAAAAAAAA
+						dGYQAAAAQDUdX7YBAAAAAAAAAAAA
 						AA==
 						</data>
 						<key>Title</key>
@@ -91,13 +91,25 @@
 						<key>UseText</key>
 						<true/>
 					</dict>
+					<dict>
+						<key>MacroActionType</key>
+						<string>Notification</string>
+						<key>SoundName</key>
+						<string></string>
+						<key>Subtitle</key>
+						<string></string>
+						<key>Text</key>
+						<string>A backup of all notes was taken.</string>
+						<key>Title</key>
+						<string>Backup Taken</string>
+					</dict>
 				</array>
 				<key>CreationDate</key>
 				<real>615361355.85336602</real>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617240631.18591297</real>
+				<real>617442495.31797194</real>
 				<key>Name</key>
 				<string>Back up notes</string>
 				<key>Triggers</key>

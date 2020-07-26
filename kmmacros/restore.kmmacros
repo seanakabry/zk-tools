@@ -155,9 +155,9 @@ echo "${KMVAR_Instance_Backup_to_Restore##*/}"</string>
 						<key>Subtitle</key>
 						<string></string>
 						<key>Text</key>
-						<string>“%Variable%Instance Backup Restored%” was successfully restored.</string>
+						<string>“%Variable%Instance Backup Restored%” was restored.</string>
 						<key>Title</key>
-						<string>Backup successfully restored</string>
+						<string>Backup Restored</string>
 					</dict>
 				</array>
 				<key>CreationDate</key>
@@ -165,7 +165,7 @@ echo "${KMVAR_Instance_Backup_to_Restore##*/}"</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617441164.72457397</real>
+				<real>617442093.56796706</real>
 				<key>Name</key>
 				<string>Restore a backup</string>
 				<key>Triggers</key>
