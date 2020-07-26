@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb246IDEuMDNcClVS
+						Y2YyIFZlcnNpb246IDEuMDRcClVS
 						STogaHR0cHM6Ly9naXRodWIuY29t
 						L3NlYW5ha2FicnkvemstdG9vbHN9
 						AQAAACMAAAABAAAABwAAAFRYVC5y
-						dGYQAAAAQDUdX7YBAAAAAAAAAAAA
+						dGYQAAAAuVUdX7YBAAAAAAAAAAAA
 						AA==
 						</data>
 						<key>Title</key>
@@ -81,7 +81,7 @@
 						<key>Source</key>
 						<string>Nothing</string>
 						<key>Text</key>
-						<string>cp -a "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Manual Backup/"</string>
+						<string>cp -aR "$KMVAR_Instance_Notes_Directory/" "$KMVAR_Instance_Backup_Directory/$(date "+%Y-%m-%d, %H.%M") - Manual Backup of All Notes/"</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 						<key>TrimResults</key>
@@ -109,7 +109,7 @@
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617442495.31797194</real>
+				<real>617450808.22931194</real>
 				<key>Name</key>
 				<string>Back up notes</string>
 				<key>Triggers</key>
