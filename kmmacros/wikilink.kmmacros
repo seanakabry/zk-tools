@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wMVwKaHR0
+						Y2YyIFZlcnNpb24gMS4wMFwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						wzQEX7YBAAAAAAAAAAAAAA==
+						gDQEX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -76,7 +76,7 @@
 						<key>Text</key>
 						<string>#!/usr/bin/env zsh -f
 cd "$KMVAR_Instance_Notes_Directory"
-print -rC1 -- **/*(N-om:t:r)</string>
+print -rC1 -- *(Nom:r)</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 						<key>TrimResults</key>
@@ -126,7 +126,7 @@ print -rC1 -- **/*(N-om:t:r)</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617437363.82514095</real>
+				<real>617433481.74281299</real>
 				<key>Name</key>
 				<string>Insert wikilink</string>
 				<key>Triggers</key>
