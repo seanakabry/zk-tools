@@ -4,7 +4,7 @@ This is a repository for [Keyboard Maestro](https://www.keyboardmaestro.com/) ma
 
 The macros are described in the repository's [wiki](https://github.com/seanakabry/zk-tools/wiki).
 
-This repository may be most useful as a reference for building your own macros and shell scripts, as most are likely to require some customisation. To this end, the shell scripts invoked by the macros are documented in the wiki and heavily commented. They are intended to be POSIX-compatible and as portable as possible, but the default context is assumed to be `zsh` in macOS. For instance, [the macOS-specific `mdfind` is used in place of `find`](https://forum.zettelkasten.de/discussion/comment/7203/#Comment_7203).
+This repository may be most useful as a reference for building your own macros and shell scripts, as most are likely to require some customisation. To this end, the shell scripts invoked by the macros are documented in the wiki and heavily commented. They are intended to be POSIX-compatible and as portable where practical, but the default context is assumed to be `zsh` in macOS. For instance, some scripts make use of `zsh`'s [glob qualifiers](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers), and [the macOS-specific `mdfind` is used in place of `find`](https://forum.zettelkasten.de/discussion/comment/7203/#Comment_7203).
 
 ## Assumptions
 
