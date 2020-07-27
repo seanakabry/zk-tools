@@ -75,6 +75,7 @@
 						<false/>
 						<key>Text</key>
 						<string>#!/usr/bin/env zsh -f
+
 cd "$KMVAR_Instance_Notes_Directory"
 print -rC1 -- **/*(N-om:t:r)</string>
 						<key>TimeOutAbortsMacro</key>
@@ -203,7 +204,7 @@ done</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617446755.11058402</real>
+				<real>617520802.52959096</real>
 				<key>Name</key>
 				<string>Rename note and update [[wikilinks]] to it, without backups</string>
 				<key>Triggers</key>
