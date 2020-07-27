@@ -40,6 +40,8 @@ This repository may be most useful as a reference for building your own macros a
 
 The following are general to most or all macros. Items specific to individual macros are noted on their respective wiki pages.
 
+*	List searches (Keyboard Maestro's "Prompt With List from Variable" action) ought to ignore diacritics (so that a search for "tokyo" will match "Tōkyō").
+
 *	Preserve original creation times, preferably without the use of `SetFile`, which requires that the user have the Command Line Tools for Xcode installed.
 	
 	The creation time of a file can be saved as a string in the syntax preferred by `touch` with:
