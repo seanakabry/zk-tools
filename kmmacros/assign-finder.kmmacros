@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb246IDEuMDVcClVS
+						Y2YyIFZlcnNpb246IDEuMDZcClVS
 						STogaHR0cHM6Ly9naXRodWIuY29t
 						L3NlYW5ha2FicnkvemstdG9vbHN9
 						AQAAACMAAAABAAAABwAAAFRYVC5y
-						dGYQAAAA0RoaX7YBAAAAAAAAAAAA
+						dGYQAAAA7HkeX7YBAAAAAAAAAAAA
 						AA==
 						</data>
 						<key>Title</key>
@@ -196,9 +196,9 @@ fi</string>
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617240509.17975497</real>
+				<real>617525611.76714802</real>
 				<key>Name</key>
-				<string>Append UIDs to Finder selection</string>
+				<string>Assign UIDs to Finder selection</string>
 				<key>Triggers</key>
 				<array/>
 				<key>UID</key>
