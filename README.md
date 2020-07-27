@@ -47,5 +47,3 @@ The following are general to most or all macros. Items specific to individual ma
 	```zsh
 	birthtime=$(date -j -f "%b  %d %T %Y" "$(stat -f "%SB" "$f")" +"%Y%m%d%H%M")
 	```
-
-*	Better account for special characters such as double quotes and square brackets in search strings.

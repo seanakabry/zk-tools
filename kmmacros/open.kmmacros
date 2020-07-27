@@ -37,14 +37,24 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wNVwKaHR0
+						Y2YyIFZlcnNpb24gMS4wNlwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						284YX7YBAAAAAAAAAAAAAA==
+						cEQdX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
+					</dict>
+					<dict>
+						<key>ActionColor</key>
+						<string>Yellow</string>
+						<key>MacroActionType</key>
+						<string>SetVariableToText</string>
+						<key>Text</key>
+						<string></string>
+						<key>Variable</key>
+						<string>Instance Documents Directory</string>
 					</dict>
 					<dict>
 						<key>KeyCode</key>
@@ -82,7 +92,12 @@
 						<key>Source</key>
 						<string>Nothing</string>
 						<key>Text</key>
-						<string>open "$(mdfind 'kMDItemFSName=="'"*$KMVAR_Instance_UID*"'"' | head -n1)"</string>
+						<string># If a documents directory has been specified, restrict the scope of the search to it; else search everywhere.
+if [[ "$KMVAR_Instance_Documents_Directory" ]]; then
+	open "$(mdfind 'kMDItemFSName=="'"*$KMVAR_Instance_UID*"'"' -onlyin "$KMVAR_Instance_Documents_Directory" | head -n1)"
+else
+	open "$(mdfind 'kMDItemFSName=="'"*$KMVAR_Instance_UID*"'"' | head -n1)"
+fi</string>
 						<key>TimeOutAbortsMacro</key>
 						<true/>
 						<key>TrimResults</key>
@@ -101,10 +116,8 @@
 				</array>
 				<key>CreationDate</key>
 				<real>615803759.94672298</real>
-				<key>IsActive</key>
-				<false/>
 				<key>ModificationDate</key>
-				<real>617240913.77154601</real>
+				<real>617508827.44695497</real>
 				<key>Name</key>
 				<string>Open file or folder by UID</string>
 				<key>Triggers</key>
