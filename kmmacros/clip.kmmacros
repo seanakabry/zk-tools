@@ -37,11 +37,11 @@
 						eDU2MDBcdHg2MTYwXHR4NjcyMFxw
 						YXJkaXJuYXR1cmFsXHBhcnRpZ2h0
 						ZW5mYWN0b3IwCgpcZjBcZnMyNiBc
-						Y2YyIFZlcnNpb24gMS4wMVwKaHR0
+						Y2YyIFZlcnNpb24gMS4wMlwKaHR0
 						cHM6Ly9naXRodWIuY29tL3NlYW5h
 						a2FicnkvemstdG9vbHN9AQAAACMA
 						AAABAAAABwAAAFRYVC5ydGYQAAAA
-						wzQEX7YBAAAAAAAAAAAAAA==
+						xCLtX7YBAAAAAAAAAAAAAA==
 						</data>
 						<key>Title</key>
 						<string>Macro Metadata</string>
@@ -239,7 +239,7 @@
 									<key>VariableConditionType</key>
 									<string>IsBefore</string>
 									<key>VariableValue</key>
-									<string>%ICUDateTime%YYYYMMddHHmm%</string>
+									<string>%ICUDateTime%yyyyMMddHHmm%</string>
 								</dict>
 							</array>
 							<key>ConditionListMatch</key>
@@ -251,7 +251,7 @@
 								<key>MacroActionType</key>
 								<string>SetVariableToText</string>
 								<key>Text</key>
-								<string>%ICUDateTime%YYYYMMddHHmm%</string>
+								<string>%ICUDateTime%yyyyMMddHHmm%</string>
 								<key>Variable</key>
 								<string>Last UID</string>
 							</dict>
@@ -286,7 +286,7 @@
 											<key>VariableConditionType</key>
 											<string>IsBefore</string>
 											<key>VariableValue</key>
-											<string>%ICUDateTimePlus%Instance i%Minutes%YYYYMMddHHmm%</string>
+											<string>%ICUDateTimePlus%Instance i%Minutes%yyyyMMddHHmm%</string>
 										</dict>
 									</array>
 									<key>ConditionListMatch</key>
@@ -301,7 +301,7 @@
 								<key>MacroActionType</key>
 								<string>SetVariableToText</string>
 								<key>Text</key>
-								<string>%ICUDateTimePlus%Instance i%Minutes%YYYYMMddHHmm%</string>
+								<string>%ICUDateTimePlus%Instance i%Minutes%yyyyMMddHHmm%</string>
 								<key>Variable</key>
 								<string>Last UID</string>
 							</dict>
@@ -328,7 +328,7 @@
 						<string>---
 Title: %Variable%Instance Title%
 URL: %Variable%Instance URL%
-Date: %ICUDateTime%MMMM dd, YYYY% at %ICUDateTime%hh:mma%
+Date: %ICUDateTime%MMMM dd, yyyy% at %ICUDateTime%hh:mma%
 ---
 
 &gt; %Variable%Instance Text%</string>
@@ -357,7 +357,7 @@ Date: %ICUDateTime%MMMM dd, YYYY% at %ICUDateTime%hh:mma%
 				<key>IsActive</key>
 				<false/>
 				<key>ModificationDate</key>
-				<real>617240659.36148906</real>
+				<real>631069251.66619503</real>
 				<key>Name</key>
 				<string>Clip highlighted text in Firefox</string>
 				<key>Triggers</key>
